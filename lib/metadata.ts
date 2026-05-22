@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Portfolio",
+  name: "MarketGRU",
   description:
-    "A modern, accessible portfolio template built with Next.js, Tailwind CSS, and TypeScript.",
+    "Minimercado para condomínios e empresas - Fácil, Rápido e Sem Custo. Ideal para oferecer conforto e praticidade no dia a dia.",
   url: "https://example.com",
   ogImage: "/og-image.png",
   creator: "@yourhandle",
@@ -14,7 +14,7 @@ export const siteConfig = {
     },
   ],
   keywords: [
-    "portfolio",
+    "MarketGRU",
     "personal site",
     "Next.js",
     "React",
@@ -72,9 +72,9 @@ export const baseMetadata: Metadata = {
     creator: siteConfig.creator,
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-icon.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   manifest: "/site.webmanifest",
 };

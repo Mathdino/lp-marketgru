@@ -94,7 +94,7 @@ const TestimonialCard = ({
 }) => (
   <div
     className={cn(
-      "border-foreground/10 bg-foreground/5 mx-2 flex h-36 w-80 shrink-0 cursor-pointer overflow-hidden rounded-xl border p-3 transition-all hover:border-blue-400 hover:shadow-[0_0_10px_#60a5fa]",
+      "border-foreground/10 bg-foreground/5 mx-2 flex h-36 w-80 shrink-0 cursor-pointer overflow-hidden rounded-xl border p-3 transition-all hover:border-[#f8301a] hover:shadow-[0_0_12px_#f8301a55]",
       className
     )}
   >

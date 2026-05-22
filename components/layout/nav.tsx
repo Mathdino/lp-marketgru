@@ -3,6 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { motion } from "motion/react";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -21,8 +22,10 @@ type NavItem = {
 
 const NAV_ITEMS: readonly NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
+  { label: "Minimercado", href: "/minimercado" },
+  { label: "Sobre Nós", href: "/sobre-nos" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contato", href: "/contato" },
 ];
 
 function useIsMounted(): boolean {
@@ -157,7 +160,31 @@ export function Nav(): ReactNode {
       aria-label="Primary"
       className="fixed top-6 left-1/2 z-50 -translate-x-1/2"
     >
-      <div className="site-nav flex items-center gap-1">
+      <div className="site-nav -mt-4 flex items-center gap-6">
+        {/* Logo — troca automaticamente com o tema */}
+        <Link
+          href="/"
+          aria-label="Ir para home"
+          className="focus-ring mr-1 rounded-lg"
+        >
+          <Image
+            src="/logo-black.png"
+            alt="Logo"
+            width={110}
+            height={32}
+            priority
+            className="h-17 w-auto object-contain dark:hidden"
+          />
+          <Image
+            src="/logo-white.png"
+            alt="Logo"
+            width={110}
+            height={32}
+            priority
+            className="hidden h-17 w-auto object-contain dark:block"
+          />
+        </Link>
+
         <ul ref={listRef} className="relative flex items-center gap-1">
           {pillRect && (
             <motion.span
@@ -169,8 +196,14 @@ export function Nav(): ReactNode {
                   ? { type: "spring", stiffness: 380, damping: 32 }
                   : { duration: 0 }
               }
-              style={{ left: 0, top: 0, bottom: 0 }}
-              className="site-nav__pill absolute rounded-full border"
+              style={{
+                left: 0,
+                top: 0,
+                bottom: 0,
+                backgroundColor: "#f8301a",
+                border: "none",
+              }}
+              className="absolute rounded-full"
             />
           )}
           {NAV_ITEMS.map((item, index) => {
@@ -186,7 +219,7 @@ export function Nav(): ReactNode {
                 <Link
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className="focus-ring relative inline-flex cursor-pointer items-center justify-center rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-300"
+                  className="focus-ring relative inline-flex cursor-pointer items-center justify-center rounded-full px-4 py-1.5 text-[17px] font-semibold transition-colors duration-300"
                 >
                   <span
                     className={

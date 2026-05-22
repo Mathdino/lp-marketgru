@@ -1,4 +1,5 @@
 import { ContactCard } from "@/components/contact/contact-card";
+import { FaqSection } from "@/components/faq/faq-section";
 import { Hero } from "@/components/hero/hero";
 import { TiltedCardSection } from "@/components/hero/tilted-card-section";
 import { Projects } from "@/components/projects/projects";
@@ -68,7 +69,7 @@ export const metadata: Metadata = createMetadata({
 
 export default function HomePage(): ReactNode {
   return (
-    <main id="main-content" className="flex flex-1 flex-col gap-20 sm:gap-28">
+    <main id="main-content" className="flex flex-1 flex-col gap-10">
       <Hero />
       <TiltedCardSection />
       <Projects withHeadline viewMoreVisible />
@@ -99,6 +100,8 @@ export default function HomePage(): ReactNode {
       <section className="w-full">
         <AnimatedTestimonials data={TESTIMONIALS} />
       </section>
+
+      <FaqSection />
 
       <ContactCard />
       <div className="h-12 sm:h-16" />

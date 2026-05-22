@@ -83,7 +83,7 @@ export function TiltedCardSection() {
                 {card.text}
               </p>
               <OrbButton
-                dotClassName="bg-emerald-500 dark:bg-emerald-500"
+                dotClassName="bg-[#f8301a] dark:bg-[#f8301a]"
                 Icon={TrendingUp}
                 className="mt-3"
               >
