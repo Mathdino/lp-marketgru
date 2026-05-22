@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import SplitText from "@/components/ui/split-text";
 
 type Entry = {
   school: string;
@@ -30,8 +31,21 @@ const ROW_HEIGHT = 64;
 export function Education(): ReactNode {
   return (
     <div className="flex flex-col gap-3">
-      <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-        Education
+      <h3 className="font-serif text-foreground text-[15px] font-semibold tracking-tight">
+        <SplitText
+          text="Education"
+          tag="span"
+          className="[font-family:var(--font-gohan)] tracking-wider"
+          textAlign="left"
+          delay={20}
+          duration={0.6}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 20 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.1}
+          rootMargin="-20px"
+        />
       </h3>
       <div className="border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative rounded-4xl border p-2 sm:p-4">
         <ul className="flex flex-col gap-2">

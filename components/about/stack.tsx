@@ -1,6 +1,7 @@
 "use client";
 
 import { RotateCcw } from "lucide-react";
+import SplitText from "@/components/ui/split-text";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type Chip = {
@@ -213,8 +214,21 @@ export function Stack(): ReactNode {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <h3 className="text-foreground text-[15px] font-semibold tracking-tight">
-          Stack
+        <h3 className="font-serif text-foreground text-[15px] font-semibold tracking-tight">
+          <SplitText
+            text="Stack"
+            tag="span"
+            className="[font-family:var(--font-gohan)] tracking-wider"
+            textAlign="left"
+            delay={20}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 20 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-20px"
+          />
         </h3>
       </div>
 

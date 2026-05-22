@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
+import SplitText from "@/components/ui/split-text";
 
 /**
  * Project imagery below is mockup-only. All visuals are sourced from
@@ -132,7 +133,20 @@ export function Projects({
         {withHeadline ? (
           <FadeIn className="flex flex-col items-center gap-5 pt-12 pb-10 text-center sm:pt-20 sm:pb-14">
             <h2 className="font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight text-foreground md:text-[3rem] lg:text-[3.5rem]">
-              My projects
+              <SplitText
+                text="My projects"
+                tag="span"
+                className="[font-family:var(--font-gohan)] tracking-wider"
+                textAlign="center"
+                delay={25}
+                duration={0.8}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-50px"
+              />
             </h2>
             <p className="max-w-[33ch] text-[18px] leading-[1.45] tracking-tight text-foreground/65 sm:text-[20px]">
               From playful experiments to thoughtful systems, a look at the
@@ -206,8 +220,21 @@ function ProjectCard({
         </div>
 
         <div className="flex flex-col gap-2.5 px-1 pb-1">
-          <h3 className="text-[20px] font-medium leading-[1.2] tracking-tight text-foreground sm:text-[22px]">
-            {project.title}
+          <h3 className="font-serif text-[20px] font-medium leading-[1.2] tracking-tight text-foreground sm:text-[22px]">
+            <SplitText
+              text={project.title}
+              tag="span"
+              className="[font-family:var(--font-gohan)] tracking-wider"
+              textAlign="left"
+              delay={20}
+              duration={0.6}
+              ease="power3.out"
+              splitType="words"
+              from={{ opacity: 0, y: 20 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-20px"
+            />
           </h3>
           <p className="text-[14px] leading-normal tracking-tight text-foreground/65 sm:text-[15px]">
             {project.description}
