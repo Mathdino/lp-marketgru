@@ -1,5 +1,5 @@
 import { ContactCard } from "@/components/contact/contact-card";
-import { Projects } from "@/components/projects/projects";
+import { BlogList } from "@/components/blog/blog-list";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
@@ -9,11 +9,11 @@ import type { ReactNode } from "react";
 export const metadata: Metadata = createMetadata({
   title: "Blog",
   description:
-    "Confira artigos, dicas e novidades sobre tecnologia, inovação e tendências para se manter atualizado e impulsionar seus projetos.",
+    "Confira artigos, dicas e novidades sobre minimercados autônomos, conveniência 24h e tecnologia para condomínios.",
   path: "/blog",
 });
 
-export default function ProjectsPage(): ReactNode {
+export default function BlogPage(): ReactNode {
   return (
     <main id="main-content" className="flex flex-1 flex-col">
       <section className="mx-auto w-full max-w-275 px-6 pt-44 pb-16 sm:px-10 sm:pb-20">
@@ -35,11 +35,11 @@ export default function ProjectsPage(): ReactNode {
             />
           </h1>
           <p className="text-foreground/65 [font-family:var(--font-poppins)] text-[20px] leading-[1.4] tracking-tight sm:text-[22px]">
-            Conteúdos, dicas e novidades para você se manter atualizado.
+            Conteúdos, dicas e novidades sobre o universo Market Gru.
           </p>
         </FadeIn>
       </section>
-      <Projects />
+      <BlogList />
       <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
