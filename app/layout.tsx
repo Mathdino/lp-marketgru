@@ -1,3 +1,4 @@
+import { WhatsAppFloat } from "@/components/contact/whatsapp-float";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { PageBackdrop } from "@/components/layout/page-backdrop";
@@ -29,6 +30,38 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const poppins = localFont({
+  src: [
+    {
+      path: "../public/fonts/Poppins-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Poppins-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
 const gohan = localFont({
   src: "../public/fonts/Gohan.ttf",
   variable: "--font-gohan",
@@ -37,11 +70,31 @@ const gohan = localFont({
 
 const coolvetica = localFont({
   src: [
-    { path: "../public/fonts/Coolvetica Rg.otf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Coolvetica Rg It.otf", weight: "400", style: "italic" },
-    { path: "../public/fonts/Coolvetica Rg Cond.otf", weight: "300", style: "normal" },
-    { path: "../public/fonts/Coolvetica Rg Cram.otf", weight: "500", style: "normal" },
-    { path: "../public/fonts/Coolvetica Hv Comp.otf", weight: "700", style: "normal" },
+    {
+      path: "../public/fonts/Coolvetica Rg.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Coolvetica Rg It.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/Coolvetica Rg Cond.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Coolvetica Rg Cram.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Coolvetica Hv Comp.otf",
+      weight: "700",
+      style: "normal",
+    },
   ],
   variable: "--font-coolvetica",
   display: "swap",
@@ -67,7 +120,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${coolvetica.variable} ${gohan.variable} bg-background text-foreground min-h-screen font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${coolvetica.variable} ${gohan.variable} ${poppins.variable} bg-background text-foreground min-h-screen [font-family:var(--font-poppins)] antialiased`}
       >
         <Providers>
           <div className="site-frame site-frame--top" aria-hidden="true" />
@@ -95,6 +148,7 @@ export default function RootLayout({
           <Nav />
           {children}
           <Footer />
+          <WhatsAppFloat />
         </Providers>
       </body>
     </html>

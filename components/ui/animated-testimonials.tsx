@@ -107,7 +107,7 @@ const TestimonialCard = ({
         />
       </div>
       <div className="flex-1">
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-baseline gap-2 [font-family:var(--font-poppins)]">
           <span className="text-foreground text-sm font-bold">
             {testimonial.name}
           </span>
@@ -115,7 +115,7 @@ const TestimonialCard = ({
             {testimonial.handle}
           </span>
         </div>
-        <p className="text-foreground/75 mt-1 line-clamp-3 text-sm leading-relaxed">
+        <p className="text-foreground/75 mt-1 line-clamp-3 [font-family:var(--font-poppins)] text-sm leading-relaxed">
           {testimonial.description}
         </p>
       </div>

@@ -92,7 +92,7 @@ function NavThemeToggle(): ReactNode {
           : "Toggle theme"
       }
       aria-pressed={mounted ? isDark : undefined}
-      className="site-nav__toggle focus-ring relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border"
+      className="site-nav__toggle focus-ring relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border"
     >
       <span aria-hidden="true" className="relative h-4 w-4">
         <Sun
@@ -160,7 +160,7 @@ export function Nav(): ReactNode {
       aria-label="Primary"
       className="fixed top-6 left-1/2 z-50 -translate-x-1/2"
     >
-      <div className="site-nav -mt-4 flex items-center gap-6">
+      <div className="site-nav [font-family:var(--font-geist-sans)] -mt-4 flex flex-nowrap items-center gap-6 whitespace-nowrap">
         {/* Logo — troca automaticamente com o tema */}
         <Link
           href="/"
@@ -185,7 +185,10 @@ export function Nav(): ReactNode {
           />
         </Link>
 
-        <ul ref={listRef} className="relative flex items-center gap-1">
+        <ul
+          ref={listRef}
+          className="relative flex flex-nowrap items-center gap-1 whitespace-nowrap"
+        >
           {pillRect && (
             <motion.span
               aria-hidden="true"
@@ -198,8 +201,8 @@ export function Nav(): ReactNode {
               }
               style={{
                 left: 0,
-                top: 0,
                 bottom: 0,
+                height: 2,
                 backgroundColor: "#f8301a",
                 border: "none",
               }}
@@ -214,14 +217,15 @@ export function Nav(): ReactNode {
                 ref={(el) => {
                   itemRefs.current[index] = el;
                 }}
-                className="relative"
+                className="relative shrink-0"
               >
                 <Link
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className="focus-ring relative inline-flex cursor-pointer items-center justify-center rounded-full px-4 py-1.5 text-[17px] font-semibold transition-colors duration-300"
+                  className="focus-ring relative inline-flex cursor-pointer items-center justify-center rounded-full px-4 py-1.5 text-[17px] font-semibold whitespace-nowrap transition-colors duration-300"
                 >
                   <span
+                    style={isActive ? { color: "#f8301a" } : undefined}
                     className={
                       isActive
                         ? "relative z-10 opacity-100"

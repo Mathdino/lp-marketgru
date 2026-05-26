@@ -39,7 +39,7 @@ export function Footer(): ReactNode {
 
   return (
     <footer
-      className="relative w-full transition-colors duration-300"
+      className="relative w-full [font-family:var(--font-poppins)] transition-colors duration-300"
       style={{ backgroundColor: "var(--frame)" }}
     >
       {/* ── Cantos côncavos no topo ── */}

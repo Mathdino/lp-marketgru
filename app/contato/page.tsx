@@ -33,7 +33,7 @@ export default function ProjectsPage(): ReactNode {
               rootMargin="-50px"
             />
           </h1>
-          <p className="text-foreground/65 text-[20px] leading-[1.4] tracking-tight sm:text-[22px]">
+          <p className="text-foreground/65 [font-family:var(--font-poppins)] text-[20px] leading-[1.4] tracking-tight sm:text-[22px]">
             Preencha o formulário e entre em contato pelo WhatsApp.
           </p>
         </FadeIn>

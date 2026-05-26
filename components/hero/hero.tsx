@@ -45,7 +45,7 @@ export function Hero(): ReactNode {
               />
             </h1>
 
-            <p className="text-foreground/65 text-[22px] leading-[1.4] tracking-tight">
+            <p className="text-foreground/65 [font-family:var(--font-poppins)] text-[22px] leading-[1.4] tracking-tight">
               Conveniência inteligente 24 horas para o seu condomínio.
             </p>
 

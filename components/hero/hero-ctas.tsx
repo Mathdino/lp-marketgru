@@ -25,7 +25,7 @@ export function HeroCtas(): ReactNode {
         >
           <Link
             href="/projects"
-            className="border-foreground/5 focus-ring group bg-background text-foreground hover:bg-foreground/4 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-medium shadow-2xl transition-colors"
+            className="border-foreground/5 focus-ring group bg-background text-foreground hover:bg-foreground/4 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-2.5 [font-family:var(--font-poppins)] text-sm font-medium shadow-2xl transition-colors"
           >
             Seja Franquiado
             <ArrowRight

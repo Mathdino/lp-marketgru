@@ -1,7 +1,9 @@
 import { ContactCard } from "@/components/contact/contact-card";
 import { FaqSection } from "@/components/faq/faq-section";
 import { Hero } from "@/components/hero/hero";
+import { SpMapStatsSection } from "@/components/hero/sp-map-section";
 import { TiltedCardSection } from "@/components/hero/tilted-card-section";
+import { TudoPrecisaSection } from "@/components/hero/tudo-precisa-section";
 import { Projects } from "@/components/projects/projects";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { FadeIn } from "@/components/ui/motion-primitives";
@@ -62,8 +64,8 @@ const TESTIMONIALS = [
 ];
 
 export const metadata: Metadata = createMetadata({
-  title: "Home",
-  description: `Welcome to ${siteConfig.name}. ${siteConfig.description}`,
+  title: "Minimercado para condomínios",
+  description: `Soluções inteligentes para condomínios com tecnologia, segurança e praticidade para transformar a gestão e o dia a dia.`,
   path: "/",
 });
 
@@ -71,8 +73,9 @@ export default function HomePage(): ReactNode {
   return (
     <main id="main-content" className="flex flex-1 flex-col gap-10">
       <Hero />
+      <TudoPrecisaSection />
       <TiltedCardSection />
-      <Projects withHeadline viewMoreVisible />
+      <SpMapStatsSection />
 
       <FadeIn className="flex flex-col items-center gap-5 text-center">
         <h1 className="text-foreground font-serif text-[2.75rem] leading-[1.05] font-medium tracking-tight md:text-[3.25rem] lg:text-[3.75rem]">
@@ -91,7 +94,7 @@ export default function HomePage(): ReactNode {
             rootMargin="-50px"
           />
         </h1>
-        <p className="text-foreground/65 text-[20px] leading-[1.4] tracking-tight sm:text-[22px]">
+        <p className="text-foreground/65 [font-family:var(--font-poppins)] text-[20px] leading-[1.4] tracking-tight sm:text-[22px]">
           Veja como a Market Gru vem trazendo mais praticidade e comodidade para
           condomínios.
         </p>

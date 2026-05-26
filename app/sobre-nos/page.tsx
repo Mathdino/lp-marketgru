@@ -11,9 +11,10 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
-  title: "About",
-  description: "About me, background, and how to get in touch.",
-  path: "/about",
+  title: "Sobre Nós",
+  description:
+    "Conheça nossa história, missão e valores. Desenvolvemos soluções inovadoras com foco em qualidade, tecnologia e resultados.",
+  path: "/sobre-nos",
 });
 
 export default function AboutPage(): ReactNode {

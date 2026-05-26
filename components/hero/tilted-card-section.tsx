@@ -79,13 +79,13 @@ export function TiltedCardSection() {
               <h3 className="text-foreground [font-family:var(--font-gohan)] text-[24px] leading-tight tracking-tight">
                 {card.title}
               </h3>
-              <p className="text-foreground/65 text-[16px] leading-[1.45] tracking-tight">
+              <p className="text-foreground/65 [font-family:var(--font-poppins)] text-[16px] leading-[1.45] tracking-tight">
                 {card.text}
               </p>
               <OrbButton
                 dotClassName="bg-[#f8301a] dark:bg-[#f8301a]"
                 Icon={TrendingUp}
-                className="mt-3"
+                className="mt-3 [font-family:var(--font-poppins)]"
               >
                 Entre em Contato
               </OrbButton>

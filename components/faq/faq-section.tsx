@@ -71,7 +71,7 @@ function FaqItem({
         className="flex w-full items-center justify-between gap-4 py-4 text-left focus-visible:outline-none"
       >
         <span
-          className={`text-[15px] leading-snug font-medium tracking-tight transition-colors duration-200 ${
+          className={`[font-family:var(--font-poppins)] text-[15px] leading-snug font-medium tracking-tight transition-colors duration-200 ${
             isOpen ? "text-foreground" : "text-foreground/70"
           }`}
         >
@@ -120,7 +120,7 @@ function FaqItem({
             transition={{ duration: 0.35, ease: EASE }}
             style={{ overflow: "hidden" }}
           >
-            <p className="text-foreground/60 pb-4 text-[14px] leading-[1.65] tracking-tight">
+            <p className="text-foreground/60 pb-4 [font-family:var(--font-poppins)] text-[14px] leading-[1.65] tracking-tight">
               {answer}
             </p>
           </motion.div>
@@ -171,10 +171,10 @@ export function FaqSection(): ReactNode {
               </svg>
             </div>
             <div>
-              <p className="text-[13px] font-semibold text-white">
+              <p className="[font-family:var(--font-poppins)] text-[13px] font-semibold text-white">
                 Sem custo de implantação
               </p>
-              <p className="text-[11px] text-white/70">
+              <p className="[font-family:var(--font-poppins)] text-[11px] text-white/70">
                 Instalação 100% gratuita para o condomínio
               </p>
             </div>
@@ -210,7 +210,7 @@ export function FaqSection(): ReactNode {
                 rootMargin="-50px"
               />
             </h2>
-            <p className="text-foreground/55 text-[16px] leading-[1.5] tracking-tight">
+            <p className="text-foreground/55 [font-family:var(--font-poppins)] text-[16px] leading-[1.5] tracking-tight">
               Entenda como o Market Gru funciona e como pode transformar o dia a
               dia do seu condomínio.
             </p>

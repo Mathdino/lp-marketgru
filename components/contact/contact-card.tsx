@@ -179,7 +179,7 @@ export function ContactCard(): ReactNode {
   }
 
   return (
-    <section className="mx-auto my-12 w-full px-6 sm:my-20 sm:px-28">
+    <section className="mx-auto my-12 w-full px-6 [font-family:var(--font-poppins)] sm:my-20 sm:px-28">
       <FadeIn>
         <div className="border-foreground/8 bg-background relative w-full overflow-hidden rounded-4xl border p-1.5 shadow-sm">
           <div className="relative w-full overflow-hidden rounded-[1.6rem]">

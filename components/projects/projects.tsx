@@ -128,8 +128,8 @@ export function Projects({
   const items = viewMoreVisible ? PROJECTS.slice(0, 4) : PROJECTS;
 
   return (
-    <section className="relative w-full">
-      <div className="mx-auto w-full max-w-275 px-6 sm:px-10">
+    <section className="relative w-full [font-family:var(--font-poppins)]">
+      <div className="mx-auto w-full px-6 sm:px-24">
         {withHeadline ? (
           <FadeIn className="flex flex-col items-center gap-5 pt-12 pb-10 text-center sm:pt-20 sm:pb-14">
             <h2 className="text-foreground font-serif text-[2.5rem] leading-[1.05] font-medium tracking-tight md:text-[3rem] lg:text-[3.5rem]">
