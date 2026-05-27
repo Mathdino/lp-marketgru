@@ -6,7 +6,7 @@ import { TiltedCardSection } from "@/components/hero/tilted-card-section";
 import { TudoPrecisaSection } from "@/components/hero/tudo-precisa-section";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { FadeIn } from "@/components/ui/motion-primitives";
-import { createMetadata, siteConfig } from "@/lib/metadata";
+import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import SplitText from "@/components/ui/split-text";
