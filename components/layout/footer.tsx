@@ -2,14 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Facebook, Youtube, Mail } from "lucide-react";
 import type { ReactNode } from "react";
-
-/* ─── Config ─────────────────────────────────────────── */
-const WHATSAPP_NUMBER = "5511999999999";
-const EMAIL_DESTINO = "contato@exemplo.com.br";
-
-const INSTAGRAM_URL = "https://instagram.com/";
-const FACEBOOK_URL = "https://facebook.com/";
-const YOUTUBE_URL = "https://youtube.com/@";
+import { siteConfig } from "@/lib/config";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -88,7 +81,7 @@ export function Footer(): ReactNode {
                 className="hidden w-auto object-contain dark:block"
               />
             </Link>
-            <p className="max-w-[28ch] text-[14px] leading-[1.6] text-[var(--frame-foreground)]/75">
+            <p className="text-[14px] leading-[1.6] text-[var(--frame-foreground)]/75">
               Levando praticidade e comodidade para condomínios com o melhor em
               minimercado autônomo.
             </p>
@@ -96,9 +89,21 @@ export function Footer(): ReactNode {
             {/* Redes sociais */}
             <div className="mt-1 flex items-center gap-2">
               {[
-                { href: INSTAGRAM_URL, label: "Instagram", Icon: Instagram },
-                { href: FACEBOOK_URL, label: "Facebook", Icon: Facebook },
-                { href: YOUTUBE_URL, label: "Youtube", Icon: Youtube },
+                {
+                  href: siteConfig.social.instagram,
+                  label: "Instagram",
+                  Icon: Instagram,
+                },
+                {
+                  href: siteConfig.social.facebook,
+                  label: "Facebook",
+                  Icon: Facebook,
+                },
+                {
+                  href: siteConfig.social.youtube,
+                  label: "Youtube",
+                  Icon: Youtube,
+                },
               ].map(({ href, label, Icon }) => (
                 <Link
                   key={label}
@@ -106,7 +111,7 @@ export function Footer(): ReactNode {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--frame-foreground)]/10 text-[var(--frame-foreground)] transition-colors hover:bg-[var(--frame-foreground)]/20"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--frame-foreground)]/10 text-[var(--frame-foreground)] transition-colors hover:bg-[#f82f19]"
                 >
                   <Icon className="h-4 w-4" strokeWidth={2} />
                 </Link>
@@ -116,7 +121,7 @@ export function Footer(): ReactNode {
 
           {/* Navegação */}
           <div className="flex flex-col gap-4">
-            <p className="text-[11px] font-semibold tracking-[0.12em] text-[var(--frame-foreground)]/50 uppercase">
+            <p className="text-[15px] font-semibold tracking-[0.12em] text-[#f82f19] uppercase">
               Navegação
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -124,7 +129,7 @@ export function Footer(): ReactNode {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[var(--frame-foreground)]"
+                    className="text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[#f82f19]"
                   >
                     {label}
                   </Link>
@@ -135,25 +140,25 @@ export function Footer(): ReactNode {
 
           {/* Contato */}
           <div className="flex flex-col gap-4">
-            <p className="text-[11px] font-semibold tracking-[0.12em] text-[var(--frame-foreground)]/50 uppercase">
+            <p className="text-[15px] font-semibold tracking-[0.12em] text-[#f82f19] uppercase">
               Contato
             </p>
             <ul className="flex flex-col gap-3">
               <li>
                 <Link
-                  href={`mailto:${EMAIL_DESTINO}`}
-                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[var(--frame-foreground)]"
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[#f82f19]"
                 >
                   <Mail className="h-4 w-4 shrink-0" strokeWidth={2} />
-                  {EMAIL_DESTINO}
+                  {siteConfig.contact.email}
                 </Link>
               </li>
               <li>
                 <Link
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[var(--frame-foreground)]"
+                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[#f82f19]"
                 >
                   <WhatsAppIcon className="h-4 w-4 shrink-0" />
                   WhatsApp

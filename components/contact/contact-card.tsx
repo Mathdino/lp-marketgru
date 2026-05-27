@@ -12,14 +12,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { ShaderFlow } from "../shaders/shader-flow";
-
-/* ─── Config ─────────────────────────────────────────── */
-const WHATSAPP_NUMBER = "5511999999999"; // sem + e sem espaços
-const EMAIL_DESTINO = "contato@exemplo.com.br";
-
-const INSTAGRAM_URL = "https://instagram.com/";
-const FACEBOOK_URL = "https://facebook.com/";
-const YOUTUBE_URL = "https://youtube.com/@";
+import { siteConfig } from "@/lib/config";
 
 /* ─── Estados BR ─────────────────────────────────────── */
 const ESTADOS_BR = [
@@ -152,7 +145,7 @@ export function ContactCard(): ReactNode {
       `*Cidade/Estado:* ${form.cidade} / ${form.estado}\n\n` +
       `*Mensagem:*\n${form.mensagem}`;
 
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMensagem)}`;
+    const waUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(waMensagem)}`;
     window.open(waUrl, "_blank");
 
     /* --- E-mail (mailto) --- */
@@ -166,11 +159,11 @@ export function ContactCard(): ReactNode {
       `Mensagem:\n${form.mensagem}`;
 
     const mailtoUrl =
-      `mailto:${EMAIL_DESTINO}` +
+      `mailto:${siteConfig.contact.email}` +
       `?subject=${encodeURIComponent(`Contato via site – ${form.nome}`)}` +
       `&body=${encodeURIComponent(mailBody)}`;
 
-    window.open(mailtoUrl, "_blank");
+    window.location.href = mailtoUrl;
 
     setForm(EMPTY);
     setEnviando(false);
@@ -223,22 +216,22 @@ export function ContactCard(): ReactNode {
 
                 {/* Redes Sociais */}
                 <div className="flex flex-col gap-3">
-                  <p className="text-foreground/40 text-[10px] font-semibold tracking-[0.12em] uppercase">
+                  <p className="text-[14px] font-semibold tracking-[0.12em] text-[#f82f19] uppercase">
                     Redes Sociais
                   </p>
                   <div className="flex flex-col gap-2">
                     <ContactLink
-                      href={INSTAGRAM_URL}
+                      href={siteConfig.social.instagram}
                       label="Instagram"
                       Icon={Instagram}
                     />
                     <ContactLink
-                      href={FACEBOOK_URL}
+                      href={siteConfig.social.facebook}
                       label="Facebook"
                       Icon={Facebook}
                     />
                     <ContactLink
-                      href={YOUTUBE_URL}
+                      href={siteConfig.social.youtube}
                       label="Youtube"
                       Icon={Youtube}
                     />
@@ -247,17 +240,17 @@ export function ContactCard(): ReactNode {
 
                 {/* Contatos */}
                 <div className="flex flex-col gap-3">
-                  <p className="text-foreground/40 text-[10px] font-semibold tracking-[0.12em] uppercase">
+                  <p className="text-[14px] font-semibold tracking-[0.12em] text-[#f82f19] uppercase">
                     Contatos
                   </p>
                   <div className="flex flex-col gap-2">
                     <ContactLink
-                      href={`mailto:${EMAIL_DESTINO}`}
+                      href={`mailto:${siteConfig.contact.email}`}
                       label="E-mail"
                       Icon={Mail}
                     />
                     <ContactLink
-                      href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                      href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                       label="WhatsApp"
                       Icon={WhatsAppIcon}
                     />
@@ -355,7 +348,7 @@ export function ContactCard(): ReactNode {
                   <button
                     type="submit"
                     disabled={enviando}
-                    className="bg-foreground text-background mt-1 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-85 disabled:opacity-50"
+                    className="bg-foreground text-background mt-1 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold hover:bg-[#f82f19] disabled:opacity-50"
                   >
                     {enviando ? (
                       "Enviando…"

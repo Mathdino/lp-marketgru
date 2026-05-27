@@ -50,7 +50,7 @@ export default async function BlogPostPage({
 
   return (
     <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-4xl px-6 pt-44 pb-16 sm:px-10">
+      <section className="mx-auto w-full max-w-7xl px-6 pt-44 pb-16">
         <FadeIn className="mb-8">
           <Link
             href="/blog"

@@ -9,9 +9,7 @@ import {
 } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { X, Send } from "lucide-react";
-
-/* ─── Config ─────────────────────────────────────────── */
-const WHATSAPP_NUMBER = "5511999999999"; // sem + e sem espaços
+import { siteConfig } from "@/lib/config";
 
 /* ─── WhatsApp icon (SVG) ────────────────────────────── */
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -91,14 +89,14 @@ export function WhatsAppFloat(): ReactNode {
     e.preventDefault();
 
     const mensagem =
-      `Olá! Vim pelo site.\n\n` +
+      `Olá! Vim pelo site do MarketGRU.\n\n` +
       `*Nome:* ${form.nome}\n` +
       `*E-mail:* ${form.email}\n` +
       `*Telefone:* ${form.telefone}\n` +
       `*Perfil:* ${form.perfil}\n\n` +
       `*Mensagem:*\n${form.mensagem}`;
 
-    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
+    const waUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(mensagem)}`;
     window.open(waUrl, "_blank", "noopener,noreferrer");
 
     setForm(EMPTY);
@@ -174,7 +172,7 @@ export function WhatsAppFloat(): ReactNode {
               className="border-foreground/8 bg-background fixed inset-x-4 bottom-24 z-[56] flex max-h-[calc(100dvh-7rem)] flex-col overflow-hidden rounded-2xl border shadow-2xl sm:inset-auto sm:right-7 sm:bottom-28 sm:max-h-[min(640px,calc(100dvh-9rem))] sm:w-[380px]"
             >
               {/* Cabeçalho verde */}
-              <div className="flex items-center gap-3 bg-[#f4331b] px-5 py-4 text-white">
+              <div className="flex items-center gap-3 bg-[#f4331b] px-5 py-4 [font-family:var(--font-poppins)] text-white">
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15">
                   <WhatsAppIcon className="h-6 w-6" />
                 </span>
@@ -199,7 +197,7 @@ export function WhatsAppFloat(): ReactNode {
               {/* Form */}
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-1 flex-col gap-3 overflow-y-auto p-5"
+                className="flex flex-1 flex-col gap-3 overflow-y-auto p-5 [font-family:var(--font-poppins)]"
               >
                 <input
                   name="nome"

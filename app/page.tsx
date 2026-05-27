@@ -4,7 +4,6 @@ import { Hero } from "@/components/hero/hero";
 import { SpMapStatsSection } from "@/components/hero/sp-map-section";
 import { TiltedCardSection } from "@/components/hero/tilted-card-section";
 import { TudoPrecisaSection } from "@/components/hero/tudo-precisa-section";
-import { Projects } from "@/components/projects/projects";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import { createMetadata, siteConfig } from "@/lib/metadata";
@@ -15,51 +14,57 @@ import SplitText from "@/components/ui/split-text";
 const TESTIMONIALS = [
   {
     description:
-      "ScrollX-UI has completely transformed how I build interfaces. The animations are silky smooth, and the components are modular and responsive.",
-    image:
-      "https://images.unsplash.com/photo-1611558709798-e009c8fd7706?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-    name: "Isabelle Carlos",
-    handle: "@isabellecarlos",
+      "O Market GRU mudou a rotina do nosso condomínio. Os moradores não precisam mais sair tarde da noite pra comprar o básico. É prático, organizado e sempre abastecido.",
+    name: "Fernanda Oliveira",
+    handle: "Condomínio The Brick",
   },
   {
     description:
-      "I love how ScrollX-UI makes my projects look professional with minimal effort. The documentation is clear and the community is super helpful.",
-    image:
-      "https://plus.unsplash.com/premium_photo-1692340973636-6f2ff926af39?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-    name: "Lana Akash",
-    handle: "@lanaakash",
+      "Como síndico, eu tinha receio da instalação, mas foi tudo limpo e sem dor de cabeça. O Market GRU agregou valor ao prédio e os condôminos adoraram a comodidade.",
+    name: "Patrícia Almeida",
+    handle: "Condomínio First Apto",
   },
   {
     description:
-      "The smooth scrolling animations and intuitive components in ScrollX-UI save me hours of development time!",
-    image:
-      "https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-    name: "Liam O'Connor",
-    handle: "@liamoc",
+      "Moro sozinho e o minimercado salva demais. Acabou o leite às 23h? Desço de elevador e resolvo. Os preços são justos e o pagamento pelo celular é super rápido.",
+    name: "Rafael Souza",
+    handle: "Escola Técnica de Música Nelsom",
   },
   {
     description:
-      "Using ScrollX-UI feels like magic — it's so easy to create beautiful, interactive UIs without writing complex code.",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-    name: "Isabella Mendes",
-    handle: "@isamendes",
+      "Com dois filhos pequenos, não ter que sair de casa pra comprar fralda ou um lanche de última hora é um alívio. O Market GRU é sempre limpo e bem cuidado.",
+    name: "Juliana Santos",
+    handle: "Clavi Ecco Tower",
   },
   {
     description:
-      "ScrollX-UI's open-source nature means I can customize components exactly how I want them — plus, the performance is outstanding.",
-    image:
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-    name: "Meera Patel",
-    handle: "@meerapatel",
+      "Implantamos o Market GRU na última assembleia e foi a melhor decisão. Zero custo pro condomínio, reposição em dia e atendimento atencioso sempre que precisamos.",
+    name: "Camila Ferreira",
+    handle: "Terrazzo Condomínio Clube",
   },
   {
     description:
-      "I recommend ScrollX-UI to everyone looking for a powerful, flexible UI library with stunning animation support.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
-    name: "Emily Chen",
-    handle: "@emchen",
+      "Recomendo o Market GRU pra qualquer condomínio. A variedade de produtos surpreende pro tamanho, e a praticidade de comprar sem sair do prédio não tem preço.",
+    name: "Mariana Costa",
+    handle: "Imobiliária Aliança Imóveis",
+  },
+  {
+    description:
+      "O que mais me impressionou foi a honestidade do sistema. É tudo no autosserviço e funciona perfeitamente. Os moradores se sentem em casa fazendo as compras.",
+    name: "Bruno Carvalho",
+    handle: "Condomínio The Brick",
+  },
+  {
+    description:
+      "Trabalho em home office e o Market GRU virou meu melhor amigo na hora do almoço. Café, água, snack saudável... tudo ali do lado, sem perder tempo no trânsito.",
+    name: "Larissa Rodrigues",
+    handle: "Clavi Ecco Tower",
+  },
+  {
+    description:
+      "Minha mãe é idosa e tinha dificuldade de ir ao mercado. Agora ela faz as comprinhas dela com tranquilidade dentro do próprio prédio. Gratidão ao Market GRU!",
+    name: "Thiago Lima",
+    handle: "Terrazzo Condomínio Clube",
   },
 ];
 

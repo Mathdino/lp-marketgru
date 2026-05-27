@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 
 interface Testimonial {
   name: string;
-  image: string;
+  image?: string;
   description: string;
   handle: string;
 }
@@ -50,7 +50,7 @@ const AnimatedCanopy = ({
   return (
     <div
       className={cn(
-        "relative flex overflow-hidden p-2",
+        "relative flex overflow-hidden p-2 [font-family:var(--font-poppins)]",
         vertical ? "flex-col" : "flex-row",
         className
       )}
@@ -99,22 +99,18 @@ const TestimonialCard = ({
     )}
   >
     <div className="flex items-start gap-3">
-      <div className="border-foreground/20 relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2">
-        <img
-          src={testimonial.image}
-          alt={testimonial.name}
-          className="h-full w-full object-cover"
-        />
+      <div className="border-foreground/20 relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 bg-[#f8301a]">
+        <span className="text-foreground text-sm font-bold">
+          {getInitials(testimonial.name)}
+        </span>
       </div>
       <div className="flex-1">
         <div className="flex items-baseline gap-2 [font-family:var(--font-poppins)]">
           <span className="text-foreground text-sm font-bold">
             {testimonial.name}
           </span>
-          <span className="text-foreground/50 text-xs">
-            {testimonial.handle}
-          </span>
         </div>
+        <span className="text-foreground/50 text-xs">{testimonial.handle}</span>
         <p className="text-foreground/75 mt-1 line-clamp-3 [font-family:var(--font-poppins)] text-sm leading-relaxed">
           {testimonial.description}
         </p>

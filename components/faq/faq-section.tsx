@@ -148,7 +148,7 @@ export function FaqSection(): ReactNode {
           className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl"
         >
           <Image
-            src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=900&auto=format&fit=crop"
+            src="/faq.webp"
             alt="Minimercado Market Gru"
             fill
             className="object-cover"

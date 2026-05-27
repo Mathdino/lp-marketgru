@@ -51,7 +51,7 @@ export default async function KeywordPage({
 
   return (
     <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-4xl px-6 pt-44 pb-16 sm:px-10">
+      <section className="mx-auto w-full max-w-7xl px-6 pt-44 pb-16">
         <FadeIn className="mb-8">
           <Link
             href="/blog"
@@ -64,7 +64,7 @@ export default async function KeywordPage({
 
         <FadeIn className="flex flex-col gap-6">
           <div className="flex items-center gap-3">
-            <span className="bg-foreground/5 text-foreground rounded-full px-3 py-1 text-xs font-medium">
+            <span className="bg-foreground/5 text-foreground rounded-full px-3 py-1 [font-family:var(--font-poppins)] text-xs font-medium">
               {post.category}
             </span>
           </div>
@@ -86,7 +86,7 @@ export default async function KeywordPage({
             />
           </h1>
 
-          <p className="text-foreground/70 text-xl leading-relaxed italic">
+          <p className="text-foreground/70 [font-family:var(--font-poppins)] text-xl leading-relaxed italic">
             {post.excerpt}
           </p>
 
@@ -101,9 +101,9 @@ export default async function KeywordPage({
           </div>
 
           <article className="mt-12">
-            <div 
+            <div
               className="blog-rich-text text-foreground/80 text-lg"
-              dangerouslySetInnerHTML={{ __html: post.content }} 
+              dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </article>
         </FadeIn>

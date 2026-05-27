@@ -15,6 +15,8 @@ import {
   type ReactNode,
 } from "react";
 
+import { StaggeredMenu } from "@/components/ui/staggered-menu";
+
 type NavItem = {
   label: string;
   href: string;
@@ -27,6 +29,12 @@ const NAV_ITEMS: readonly NavItem[] = [
   { label: "Blog", href: "/blog" },
   { label: "Contato", href: "/contato" },
 ];
+
+const STAGGERED_ITEMS = NAV_ITEMS.map((item) => ({
+  label: item.label,
+  ariaLabel: `Ir para ${item.label}`,
+  link: item.href,
+}));
 
 function useIsMounted(): boolean {
   return useSyncExternalStore(
@@ -116,6 +124,8 @@ function NavThemeToggle(): ReactNode {
 
 export function Nav(): ReactNode {
   const pathname = usePathname();
+  const { resolvedTheme } = useTheme();
+  const mounted = useIsMounted();
   const listRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
   const [pillRect, setPillRect] = useState<{
@@ -156,91 +166,114 @@ export function Nav(): ReactNode {
   }, [pillRect]);
 
   return (
-    <nav
-      aria-label="Primary"
-      className="fixed top-6 left-1/2 z-50 -translate-x-1/2"
-    >
-      <div className="site-nav [font-family:var(--font-geist-sans)] -mt-4 flex flex-nowrap items-center gap-6 whitespace-nowrap">
-        {/* Logo — troca automaticamente com o tema */}
-        <Link
-          href="/"
-          aria-label="Ir para home"
-          className="focus-ring mr-1 rounded-lg"
-        >
-          <Image
-            src="/logo-black.png"
-            alt="Logo"
-            width={110}
-            height={32}
-            priority
-            className="h-17 w-auto object-contain dark:hidden"
-          />
-          <Image
-            src="/logo-white.png"
-            alt="Logo"
-            width={110}
-            height={32}
-            priority
-            className="hidden h-17 w-auto object-contain dark:block"
-          />
-        </Link>
-
-        <ul
-          ref={listRef}
-          className="relative flex flex-nowrap items-center gap-1 whitespace-nowrap"
-        >
-          {pillRect && (
-            <motion.span
-              aria-hidden="true"
-              initial={false}
-              animate={{ x: pillRect.x, width: pillRect.width }}
-              transition={
-                hasMeasured
-                  ? { type: "spring", stiffness: 380, damping: 32 }
-                  : { duration: 0 }
-              }
-              style={{
-                left: 0,
-                bottom: 0,
-                height: 2,
-                backgroundColor: "#f8301a",
-                border: "none",
-              }}
-              className="absolute rounded-full"
-            />
-          )}
-          {NAV_ITEMS.map((item, index) => {
-            const isActive = index === activeIndex;
-            return (
-              <li
-                key={item.href}
-                ref={(el) => {
-                  itemRefs.current[index] = el;
-                }}
-                className="relative shrink-0"
-              >
-                <Link
-                  href={item.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className="focus-ring relative inline-flex cursor-pointer items-center justify-center rounded-full px-4 py-1.5 text-[17px] font-semibold whitespace-nowrap transition-colors duration-300"
-                >
-                  <span
-                    style={isActive ? { color: "#f8301a" } : undefined}
-                    className={
-                      isActive
-                        ? "relative z-10 opacity-100"
-                        : "relative z-10 opacity-60 hover:opacity-100"
-                    }
-                  >
-                    {item.label}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-        <NavThemeToggle />
+    <>
+      {/* Mobile Nav */}
+      <div className="block md:hidden">
+        <StaggeredMenu
+          items={STAGGERED_ITEMS}
+          isFixed={true}
+          logoUrl={
+            !mounted || resolvedTheme === "light"
+              ? "/logo-black.png"
+              : "/logo-white.png"
+          }
+          logoDarkUrl="/logo-black.png"
+          menuButtonColor="#000000"
+          openMenuButtonColor="#000000"
+          colors={["#1a1a1a", "#f8301a"]}
+          accentColor="#f8301a"
+          displaySocials={false}
+          displayItemNumbering={true}
+        />
       </div>
-    </nav>
+
+      {/* Desktop Nav */}
+      <nav
+        aria-label="Primary"
+        className="fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 md:block"
+      >
+        <div className="site-nav -mt-4 flex flex-nowrap items-center gap-6 [font-family:var(--font-geist-sans)] whitespace-nowrap">
+          {/* Logo — troca automaticamente com o tema */}
+          <Link
+            href="/"
+            aria-label="Ir para home"
+            className="focus-ring mr-1 rounded-lg"
+          >
+            <Image
+              src="/logo-black.png"
+              alt="Logo"
+              width={110}
+              height={32}
+              priority
+              className="h-17 w-auto object-contain dark:hidden"
+            />
+            <Image
+              src="/logo-white.png"
+              alt="Logo"
+              width={110}
+              height={32}
+              priority
+              className="hidden h-17 w-auto object-contain dark:block"
+            />
+          </Link>
+
+          <ul
+            ref={listRef}
+            className="relative flex flex-nowrap items-center gap-1 whitespace-nowrap"
+          >
+            {pillRect && (
+              <motion.span
+                aria-hidden="true"
+                initial={false}
+                animate={{ x: pillRect.x, width: pillRect.width }}
+                transition={
+                  hasMeasured
+                    ? { type: "spring", stiffness: 380, damping: 32 }
+                    : { duration: 0 }
+                }
+                style={{
+                  left: 0,
+                  bottom: 0,
+                  height: 2,
+                  backgroundColor: "#f8301a",
+                  border: "none",
+                }}
+                className="absolute rounded-full"
+              />
+            )}
+            {NAV_ITEMS.map((item, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <li
+                  key={item.href}
+                  ref={(el) => {
+                    itemRefs.current[index] = el;
+                  }}
+                  className="relative shrink-0"
+                >
+                  <Link
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className="focus-ring relative inline-flex cursor-pointer items-center justify-center rounded-full px-4 py-1.5 text-[17px] font-semibold whitespace-nowrap transition-colors duration-300"
+                  >
+                    <span
+                      style={isActive ? { color: "#f8301a" } : undefined}
+                      className={
+                        isActive
+                          ? "relative z-10 opacity-100"
+                          : "relative z-10 opacity-60 hover:opacity-100"
+                      }
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <NavThemeToggle />
+        </div>
+      </nav>
+    </>
   );
 }

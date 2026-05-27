@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { Check, Copy, Mail } from "lucide-react";
 import { useState } from "react";
 import type { ReactNode } from "react";
+import { siteConfig } from "@/lib/config";
 
-const EMAIL = "hello@example.com";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function ContactButton(): ReactNode {
@@ -43,7 +43,11 @@ export function ContactButton(): ReactNode {
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
       aria-label={
-        copied ? "Email copied" : open ? `Copy ${EMAIL}` : "Show email"
+        copied
+          ? "Email copied"
+          : open
+            ? `Copy ${siteConfig.contact.email}`
+            : "Show email"
       }
       transition={{ layout: { duration: 0.55, ease: EASE } }}
       style={{ borderRadius: 12 }}
@@ -91,7 +95,7 @@ export function ContactButton(): ReactNode {
                   )}
                 </AnimatePresence>
               </span>
-              <span className="tabular-nums">{EMAIL}</span>
+              <span className="tabular-nums">{siteConfig.contact.email}</span>
             </motion.span>
           ) : (
             <motion.span
