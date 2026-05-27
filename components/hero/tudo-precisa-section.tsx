@@ -58,7 +58,7 @@ export function TudoPrecisaSection(): ReactNode {
         {/* Conteúdo */}
         <div className="flex flex-col gap-6">
           <FadeIn>
-            <h2 className="pb-8 font-serif text-[2.25rem] leading-[1.05] font-medium tracking-tight text-white md:text-[2.75rem] lg:text-[3rem]">
+            <h2 className="text-foreground pb-8 font-serif text-[2.25rem] leading-[1.05] font-medium tracking-tight md:text-[2.75rem] lg:text-[3rem]">
               <SplitText
                 text="Tudo o que você precisa"
                 tag="span"

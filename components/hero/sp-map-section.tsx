@@ -8,8 +8,16 @@ import SplitText from "@/components/ui/split-text";
 /* Stats — ajuste valores conforme a empresa (4 itens em grid 2×2) */
 const STATS = [
   { value: 6, suffix: "+", label: "Minimercados instalados em SP" },
-  { value: 12, suffix: "K+", label: "Moradores atendidos diariamente" },
-  { value: 99, suffix: "%", label: "Satisfação dos condomínios parceiros" },
+  {
+    value: 12,
+    suffix: "K+",
+    label: "Moradores e colaboradores atendidos diariamente",
+  },
+  {
+    value: 99,
+    suffix: "%",
+    label: "Satisfação dos condomínios e prédios parceiros",
+  },
   { value: 24, suffix: "h", label: "Atendimento ininterrupto, todo dia" },
 ];
 
@@ -355,7 +363,7 @@ function BrazilMap(): ReactNode {
           transition: fill 0.25s ease;
         }
         :global(.brazil-map .state:hover .shape) {
-          fill: #f8301a;
+          fill: #cc1f0c;
           opacity: 0.9;
         }
         :global(.brazil-map .state:hover .label-state) {
@@ -363,7 +371,7 @@ function BrazilMap(): ReactNode {
         }
         /* São Paulo destacado — no escuro mantém a stroke padrão (sem borda branca) */
         :global(.brazil-map .shape--active) {
-          fill: #f8301a !important;
+          fill: #cc1f0c !important;
           stroke: #2a2d35;
           stroke-width: 1;
           filter: drop-shadow(0 4px 12px rgba(248, 48, 26, 0.45));

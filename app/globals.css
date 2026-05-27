@@ -248,6 +248,16 @@ html[data-theme-anim="1"]::view-transition-new(root) {
   width: var(--frame-inset);
 }
 
+@media (max-width: 767px) {
+  .site-frame--left,
+  .site-frame--right,
+  .site-frame--top,
+  .site-frame--nav-tray,
+  .site-corner {
+    display: none;
+  }
+}
+
 /* Blog & SEO Content Styling */
 .blog-rich-text {
   display: flex;

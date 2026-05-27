@@ -124,8 +124,6 @@ function NavThemeToggle(): ReactNode {
 
 export function Nav(): ReactNode {
   const pathname = usePathname();
-  const { resolvedTheme } = useTheme();
-  const mounted = useIsMounted();
   const listRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
   const [pillRect, setPillRect] = useState<{
@@ -172,18 +170,15 @@ export function Nav(): ReactNode {
         <StaggeredMenu
           items={STAGGERED_ITEMS}
           isFixed={true}
-          logoUrl={
-            !mounted || resolvedTheme === "light"
-              ? "/logo-black.png"
-              : "/logo-white.png"
-          }
+          logoUrl="/logo-black.png"
           logoDarkUrl="/logo-black.png"
-          menuButtonColor="#000000"
-          openMenuButtonColor="#000000"
+          menuButtonColor="#ffffff"
+          openMenuButtonColor="#ffffff"
           colors={["#1a1a1a", "#f8301a"]}
           accentColor="#f8301a"
           displaySocials={false}
           displayItemNumbering={true}
+          showThemeToggle={true}
         />
       </div>
 
