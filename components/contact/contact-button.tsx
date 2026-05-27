@@ -14,12 +14,12 @@ export function ContactButton(): ReactNode {
 
   const handleCopy = async (): Promise<void> => {
     try {
-      await navigator.clipboard.writeText(EMAIL);
+      await navigator.clipboard.writeText(siteConfig.contact.email);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
       const ta = document.createElement("textarea");
-      ta.value = EMAIL;
+      ta.value = siteConfig.contact.email;
       ta.style.position = "fixed";
       ta.style.opacity = "0";
       document.body.appendChild(ta);

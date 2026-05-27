@@ -27,8 +27,8 @@ function CountUp({
   inView,
 }: {
   to: number;
-  prefix?: string;
-  suffix?: string;
+  prefix?: string | undefined;
+  suffix?: string | undefined;
   duration?: number;
   inView: boolean;
 }): ReactNode {
