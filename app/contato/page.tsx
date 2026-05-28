@@ -1,4 +1,5 @@
 import { ContactCard } from "@/components/contact/contact-card";
+import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
@@ -14,7 +15,8 @@ export const metadata: Metadata = createMetadata({
 
 export default function ProjectsPage(): ReactNode {
   return (
-    <main id="main-content" className="flex flex-1 flex-col">
+    <main id="main-content" className="relative flex flex-1 flex-col">
+      <GrainientBackground className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden" />
       <section className="mx-auto w-full px-6 pt-44 sm:px-10">
         <FadeIn className="flex flex-col items-center gap-5 text-center">
           <h1 className="text-foreground font-serif text-[2.75rem] leading-[1.05] font-medium tracking-tight md:text-[3.25rem] lg:text-[3.75rem]">

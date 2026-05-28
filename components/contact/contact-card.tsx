@@ -11,7 +11,7 @@ import Link from "next/link";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
-import { ShaderFlow } from "../shaders/shader-flow";
+import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { siteConfig } from "@/lib/config";
 
 /* ─── Estados BR ─────────────────────────────────────── */
@@ -176,16 +176,19 @@ export function ContactCard(): ReactNode {
       <FadeIn>
         <div className="border-foreground/8 bg-background relative w-full overflow-hidden rounded-4xl border p-1.5 shadow-sm">
           <div className="relative w-full overflow-hidden rounded-[1.6rem]">
-            {/* Shader background */}
+            {/* Grainient background (light/dark automático) */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 opacity-45 dark:opacity-25"
+              className="pointer-events-none absolute inset-0"
               style={{
                 WebkitMaskImage: CARD_FADE_MASK,
                 maskImage: CARD_FADE_MASK,
               }}
             >
-              <ShaderFlow scale={3} brightness={3} />
+              <GrainientBackground
+                className="pointer-events-none absolute inset-0"
+                opacityClassName="opacity-70 dark:opacity-50"
+              />
             </div>
 
             <div className="relative grid gap-8 p-6 sm:gap-10 sm:p-7 md:grid-cols-[1fr_1.4fr] md:items-stretch md:gap-6 md:p-6">

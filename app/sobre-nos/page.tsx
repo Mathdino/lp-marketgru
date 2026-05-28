@@ -4,6 +4,7 @@ import { PolaroidStrip } from "@/components/sobre-nos/polaroid-strip";
 import { Skills } from "@/components/sobre-nos/skills";
 import { Stack } from "@/components/sobre-nos/stack";
 import { ContactCard } from "@/components/contact/contact-card";
+import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
@@ -19,7 +20,8 @@ export const metadata: Metadata = createMetadata({
 
 export default function AboutPage(): ReactNode {
   return (
-    <main id="main-content" className="flex flex-1 flex-col">
+    <main id="main-content" className="relative flex flex-1 flex-col">
+      <GrainientBackground className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden" />
       <section className="mx-auto w-full max-w-312 pt-40 sm:pt-56">
         <PolaroidStrip />
       </section>

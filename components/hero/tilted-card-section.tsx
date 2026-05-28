@@ -57,7 +57,7 @@ export function TiltedCardSection() {
           empório em um só lugar.
         </p>
       </FadeIn>
-      <div className="mx-auto grid w-full grid-cols-1 gap-10 px-6 sm:px-20 md:grid-cols-3 md:gap-7">
+      <div className="mx-auto grid w-full grid-cols-1 gap-10 px-6 [font-family:var(--font-poppins)] sm:px-20 md:grid-cols-3 md:gap-7">
         {MARKET_CARDS.map((card) => (
           <article key={card.captionText} className="flex flex-col">
             <TiltedCard

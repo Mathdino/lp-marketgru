@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { HeroCtas } from "./hero-ctas";
 import { FadeIn, ScaleUnblur } from "@/components/ui/motion-primitives";
 import { PortraitMorph } from "./portrait-morph";
+import { GrainientBackground } from "@/components/shaders/grainient-background";
 import SplitText from "@/components/ui/split-text";
 
 const PORTRAIT_SRC = "/josh.webp";
@@ -10,8 +11,9 @@ const PORTRAIT_HOVER_SRC = "/josh_wave.webp";
 
 export function Hero(): ReactNode {
   return (
-    <section className="relative w-full">
-      <div className="mx-auto w-full px-6 pt-34 pb-14 sm:px-20 sm:pt-44">
+    <section className="relative w-full overflow-hidden">
+      <GrainientBackground />
+      <div className="relative mx-auto w-full px-6 pt-34 pb-14 sm:px-20 sm:pt-44">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8">
           <FadeIn className="flex flex-col gap-4">
             <h1 className="text-foreground font-serif text-[2.75rem] leading-[1.05] font-medium tracking-tight md:text-[2.5rem] lg:text-[3.8rem]">
