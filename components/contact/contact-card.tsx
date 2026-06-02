@@ -191,7 +191,7 @@ export function ContactCard(): ReactNode {
               />
             </div>
 
-            <div className="relative grid gap-8 p-6 sm:gap-10 sm:p-7 md:grid-cols-[1fr_1.4fr] md:items-stretch md:gap-6 md:p-6">
+            <div className="relative grid gap-8 p-3 sm:gap-10 sm:p-7 md:grid-cols-[1fr_1.4fr] md:items-stretch md:gap-6 md:p-6">
               {/* ── LADO ESQUERDO ───────────────────────── */}
               <div className="flex flex-col gap-7">
                 {/* Título + subtítulo */}

@@ -49,7 +49,7 @@ export function Hero(): ReactNode {
           </FadeIn>
 
           <ScaleUnblur className="relative z-30 flex justify-stretch md:justify-end">
-            <div className="relative mb-[-60px] w-full sm:mb-[-100px] md:mb-[-140px] lg:mb-[-92px]">
+            <div className="relative mb-[-50px] w-full sm:mb-[-100px] md:mb-[-140px] lg:mb-[-92px]">
               <img
                 src="/banner.png"
                 alt="Banner"

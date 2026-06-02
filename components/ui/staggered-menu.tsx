@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { gsap } from "gsap";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -534,7 +540,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     key={it.label + idx}
                   >
                     <Link
-                      className={`sm-panel-item relative inline-block cursor-pointer pr-[1.4em] text-[3rem] leading-none font-semibold tracking-[-2px] uppercase no-underline transition-[background,color] duration-150 ease-linear sm:text-[4rem] ${isDark ? "text-white" : "text-black"}`}
+                      className={`sm-panel-item relative inline-block cursor-pointer pr-[1.4em] text-[2.5rem] leading-none font-semibold tracking-[-2px] uppercase no-underline transition-[background,color] duration-150 ease-linear sm:text-[4rem] ${isDark ? "text-white" : "text-black"}`}
                       href={it.link}
                       aria-label={it.ariaLabel}
                       onClick={closeMenu}
@@ -550,7 +556,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                   className="sm-panel-itemWrap relative overflow-hidden leading-none"
                   aria-hidden="true"
                 >
-                  <span className={`sm-panel-item relative inline-block cursor-pointer pr-[1.4em] text-[4rem] leading-none font-semibold tracking-[-2px] uppercase no-underline transition-[background,color] duration-150 ease-linear ${isDark ? "text-white" : "text-black"}`}>
+                  <span
+                    className={`sm-panel-item relative inline-block cursor-pointer pr-[1.4em] text-[2.5rem] leading-none font-semibold tracking-[-2px] uppercase no-underline transition-[background,color] duration-150 ease-linear sm:text-[4rem] ${isDark ? "text-white" : "text-black"}`}
+                  >
                     <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                       No items
                     </span>
@@ -560,9 +568,17 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </ul>
 
             {showThemeToggle && (
-              <div className={`sm-theme-row mt-auto flex items-center gap-3 border-t pt-6 ${isDark ? "border-white/10" : "border-black/10"}`}>
-                <span className={`text-sm font-medium ${isDark ? "text-white/60" : "text-black/50"}`}>
-                  {themeMounted ? (isDark ? "Tema escuro" : "Tema claro") : "Tema"}
+              <div
+                className={`sm-theme-row mt-auto flex items-center gap-3 border-t pt-6 ${isDark ? "border-white/10" : "border-black/10"}`}
+              >
+                <span
+                  className={`text-sm font-medium ${isDark ? "text-white/60" : "text-black/50"}`}
+                >
+                  {themeMounted
+                    ? isDark
+                      ? "Tema escuro"
+                      : "Tema claro"
+                    : "Tema"}
                 </span>
                 <button
                   type="button"
