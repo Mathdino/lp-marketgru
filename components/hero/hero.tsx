@@ -2,18 +2,12 @@ import type { ReactNode } from "react";
 
 import { HeroCtas } from "./hero-ctas";
 import { FadeIn, ScaleUnblur } from "@/components/ui/motion-primitives";
-import { PortraitMorph } from "./portrait-morph";
-import { GrainientBackground } from "@/components/shaders/grainient-background";
 import SplitText from "@/components/ui/split-text";
-
-const PORTRAIT_SRC = "/josh.webp";
-const PORTRAIT_HOVER_SRC = "/josh_wave.webp";
 
 export function Hero(): ReactNode {
   return (
-    <section className="relative w-full overflow-hidden">
-      <GrainientBackground />
-      <div className="relative mx-auto w-full px-6 pt-34 pb-14 sm:px-20 sm:pt-44">
+    <section className="relative w-full overflow-visible bg-[#f73019]">
+      <div className="relative mx-auto w-full px-6 pt-24 pb-0 sm:px-20">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8">
           <FadeIn className="flex flex-col gap-4">
             <h1 className="text-foreground font-serif text-[2.75rem] leading-[1.05] font-medium tracking-tight md:text-[2.5rem] lg:text-[3.8rem]">
@@ -54,15 +48,16 @@ export function Hero(): ReactNode {
             <HeroCtas />
           </FadeIn>
 
-          <ScaleUnblur className="flex justify-stretch md:justify-end">
-            <div className="border-foreground/8 bg-background relative aspect-square w-full overflow-hidden rounded-4xl border p-1.5 shadow-sm md:max-w-105">
-              <div className="relative h-full w-full overflow-hidden rounded-[1.6rem]">
-                <PortraitMorph
-                  srcA={PORTRAIT_SRC}
-                  srcB={PORTRAIT_HOVER_SRC}
-                  alt="Josh portrait"
-                />
-              </div>
+          <ScaleUnblur className="relative z-30 flex justify-stretch md:justify-end">
+            <div className="relative mb-[-60px] w-full sm:mb-[-100px] md:mb-[-140px] lg:mb-[-92px]">
+              <img
+                src="/banner.png"
+                alt="Banner"
+                className="block w-full object-contain"
+                style={{
+                  filter: "drop-shadow(0 20px 18px rgba(0,0,0,0.18))",
+                }}
+              />
             </div>
           </ScaleUnblur>
         </div>
