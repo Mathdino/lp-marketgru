@@ -16,7 +16,7 @@ export const siteConfig = {
   },
 
   social: {
-    instagram: "https://instagram.com/marketgru",
+    instagram: "https://instagram.com/market_gru1",
     facebook: "https://facebook.com/marketgru",
     youtube: "https://youtube.com/@marketgru",
   },
