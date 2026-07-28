@@ -4,12 +4,35 @@ import { Nav } from "@/components/layout/nav";
 import { PageBackdrop } from "@/components/layout/page-backdrop";
 import { Providers } from "@/components/layout/providers";
 import { SkipToContent } from "@/components/layout/skip-to-content";
-import { baseMetadata } from "@/lib/metadata";
+import { baseMetadata, siteConfig } from "@/lib/metadata";
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-WKH53MEDQ1";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/logo-black.png`,
+  image: `${siteConfig.url}${siteConfig.ogImage}`,
+  description: siteConfig.description,
+  areaServed: {
+    "@type": "Country",
+    name: "Brasil",
+  },
+  knowsAbout: [
+    "Minimercado autônomo",
+    "Mercado autônomo para condomínios",
+    "Franquia de minimercado",
+    "Microfranquia",
+  ],
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -119,6 +142,24 @@ export default function RootLayout({
 }>): ReactNode {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${coolvetica.variable} ${gohan.variable} ${poppins.variable} bg-background text-foreground min-h-screen [font-family:var(--font-poppins)] antialiased`}
       >

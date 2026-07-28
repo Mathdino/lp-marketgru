@@ -3,23 +3,29 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "MarketGRU",
   description:
-    "Minimercado para condomínios e empresas - Fácil, Rápido e Sem Custo. Ideal para oferecer conforto e praticidade no dia a dia.",
-  url: "https://example.com",
-  ogImage: "/og-image.png",
-  creator: "@yourhandle",
+    "Minimercado autônomo para condomínios e empresas - Fácil, Rápido e Sem Custo. Instale um mercado 24h no seu condomínio e ofereça mais conforto e praticidade no dia a dia.",
+  url: "https://www.marketgru.com.br",
+  ogImage: "/banner.png",
+  creator: "MarketGRU",
   authors: [
     {
-      name: "Your Name",
-      url: "https://example.com",
+      name: "MarketGRU",
+      url: "https://www.marketgru.com.br",
     },
   ],
   keywords: [
     "MarketGRU",
-    "personal site",
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "TypeScript",
+    "minimercado autônomo",
+    "minimercado para condomínio",
+    "mercadinho no condomínio",
+    "mercado autônomo",
+    "franquia de minimercado",
+    "microfranquia",
+    "mercado 24h condomínio",
+    "franquia de baixo investimento",
+    "honest market",
+    "minimercado sem custo",
+    "mercado autônomo para síndicos",
   ],
 } as const;
 
@@ -45,12 +51,17 @@ export const baseMetadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    other: {
+      "msvalidate.01": "F81971CA82BE24A2AC6152D6339AA49D",
+    },
+  },
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "pt_BR",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
