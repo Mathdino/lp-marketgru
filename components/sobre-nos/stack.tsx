@@ -12,27 +12,154 @@ type Chip = {
   iconUrl?: string;
 };
 
+// Marcas presentes nos mercados MarketGRU.
+// Coloque os logos (SVG ou PNG com fundo transparente) na pasta public/marcas
+// usando exatamente o nome indicado em `iconUrl`.
 const CHIPS: Chip[] = [
   {
-    label: "Figma",
-    slug: "figma",
-    bg: "#1f1f1f",
-    fg: "#ffffff",
-    iconUrl: "https://svgl.app/library/figma.svg",
+    label: "Coca-Cola",
+    slug: "coca",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-coca.svg",
   },
-  { label: "React", slug: "react", bg: "#1FB6CB", fg: "#ffffff" },
-  { label: "Next.js", slug: "nextdotjs", bg: "#1f1f1f", fg: "#ffffff" },
-  { label: "TypeScript", slug: "typescript", bg: "#2F74C0", fg: "#ffffff" },
-  { label: "shadcn/ui", slug: "shadcnui", bg: "#5b54ff", fg: "#ffffff" },
-  { label: "Cursor", slug: "cursor", bg: "#111111", fg: "#ffffff" },
-  { label: "GSAP", slug: "gsap", bg: "#0AE448", fg: "#0a0a0a" },
-  { label: "GitHub", slug: "github", bg: "#181717", fg: "#ffffff" },
-  { label: "Vercel", slug: "vercel", bg: "#0a0a0a", fg: "#ffffff" },
-  { label: "Tailwind CSS", slug: "tailwindcss", bg: "#2BBCF5", fg: "#ffffff" },
+  {
+    label: "Fanta",
+    slug: "fanta",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-fanta.svg",
+  },
+  {
+    label: "Guaraná Antarctica",
+    slug: "guarana",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-guarana.svg",
+  },
+  {
+    label: "Crystal",
+    slug: "crystal",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-crystal.svg",
+  },
+  {
+    label: "Heineken",
+    slug: "heineken",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-heineken.svg",
+  },
+  {
+    label: "Amstel",
+    slug: "amstel",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-amstel.svg",
+  },
+  {
+    label: "Red Bull",
+    slug: "redbull",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-redbull.svg",
+  },
+  {
+    label: "Monster",
+    slug: "monster",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-monster.svg",
+  },
+  {
+    label: "Nestlé",
+    slug: "nestle",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-nestle.svg",
+  },
+  {
+    label: "Lacta",
+    slug: "lacta",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-lacta.svg",
+  },
+  {
+    label: "Halls",
+    slug: "halls",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-halls.svg",
+  },
+  {
+    label: "Trident",
+    slug: "trident",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-trident.svg",
+  },
+  {
+    label: "Fini",
+    slug: "fini",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-fini.svg",
+  },
+  {
+    label: "Elma Chips",
+    slug: "elmachips",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-elmachips.svg",
+  },
+  {
+    label: "Nissin",
+    slug: "nissin",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-nissin.svg",
+  },
+  {
+    label: "Sadia",
+    slug: "sadia",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-sadia.svg",
+  },
+  {
+    label: "Parmalat",
+    slug: "parmalat",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-parmalat.svg",
+  },
+  {
+    label: "União",
+    slug: "uniao",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-uniao.svg",
+  },
+  {
+    label: "Dona Maria",
+    slug: "donamaria",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-donamaria.svg",
+  },
+  {
+    label: "Jundiá",
+    slug: "jundia",
+    bg: "#ffffff",
+    fg: "#1f1f1f",
+    iconUrl: "/marcas/logo-jundia.svg",
+  },
 ];
 
-const CHIP_RADIUS = 14;
-const ICON_RADIUS = 10;
+const CHIP_RADIUS = 18;
+const ICON_RADIUS = 18;
 const WALL_PAD = 16;
 
 type ChipState = {
@@ -214,9 +341,9 @@ export function Stack(): ReactNode {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center gap-3">
-        <h3 className="font-serif text-foreground text-[15px] font-semibold tracking-tight">
+        <h3 className="text-foreground font-serif text-[25px] font-semibold tracking-tight">
           <SplitText
-            text="Stack"
+            text="Marcas presentes nos mercados"
             tag="span"
             className="[font-family:var(--font-gohan)] tracking-wider"
             textAlign="left"
@@ -232,7 +359,7 @@ export function Stack(): ReactNode {
         </h3>
       </div>
 
-      <div className="border-foreground/5 bg-foreground/2 dark:bg-foreground/5 relative h-40 overflow-hidden rounded-4xl border sm:h-64">
+      <div className="relative h-[28rem] overflow-hidden rounded-4xl [font-family:var(--font-poppins)] backdrop-blur-xl sm:h-[32rem]">
         <button
           type="button"
           onClick={() => setResetKey((k) => k + 1)}
@@ -283,7 +410,7 @@ export function Stack(): ReactNode {
 function ChipPill({ chip }: { chip: Chip }): ReactNode {
   return (
     <div
-      className="dark:ring-1 dark:ring-white/15 inline-flex items-center gap-2 p-1 pr-2 text-[15px] font-medium tracking-tight sm:text-[16px]"
+      className="inline-flex items-center gap-2.5 p-2 pr-4 text-[17px] font-medium tracking-tight sm:text-[19px] dark:ring-1 dark:ring-white/15"
       style={{
         backgroundColor: chip.bg,
         color: chip.fg,
@@ -291,16 +418,16 @@ function ChipPill({ chip }: { chip: Chip }): ReactNode {
       }}
     >
       <span
-        className="inline-flex h-8 w-8 items-center justify-center bg-white/95"
+        className="inline-flex h-12 w-12 items-center justify-center bg-white/95"
         style={{ borderRadius: `${ICON_RADIUS}px` }}
         aria-hidden="true"
       >
         <img
           src={chip.iconUrl ?? `https://cdn.simpleicons.org/${chip.slug}`}
           alt=""
-          width={18}
-          height={18}
-          className="h-5 w-5"
+          width={32}
+          height={32}
+          className="h-[45px] w-[45px] object-contain"
           draggable={false}
         />
       </span>

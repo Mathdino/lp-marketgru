@@ -1,26 +1,11 @@
-import {
-  ArrowRight,
-  Bot,
-  Compass,
-  Layers,
-  LineChart,
-  Sparkles,
-  Wand2,
-} from "lucide-react";
+import { Building2 } from "lucide-react";
 import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 
-/**
- * Project imagery below is mockup-only. All visuals are sourced from
- * Dribbble and credit belongs to the original creators on dribbble.com.
- * Replace these with your own work before shipping.
- */
-
-type Project = {
+type Unidade = {
   id: string;
   icon: ComponentType<{ className?: string }>;
   iconLabel: string;
@@ -32,188 +17,153 @@ type Project = {
   imageAlt: string;
 };
 
-const PROJECTS: Project[] = [
+const UNIDADES: Unidade[] = [
   {
-    id: "loom",
-    icon: Sparkles,
-    iconLabel: "LOOM",
-    title:
-      "An AI writing companion that thinks alongside you, allowing you to capture ideas, edits, and drafts in one focused space.",
+    id: "the-brick",
+    icon: Building2,
+    iconLabel: "Condomínio The Brick",
+    title: "Sempre abastecido, organizado e disponível 24 horas.",
     description:
-      "I designed Loom, a focused writing surface where ideas, edits, and drafts coexist without the chat clutter.",
-    meta: "Design Engineer, 2024",
-    imageRatio: 752 / 497,
-    image:
-      "https://cdn.dribbble.com/userupload/46128964/file/b92b9d268dd928642ca94bd49e32923a.jpg?resize=752x497&vertical=center",
-    imageAlt: "Loom AI writing companion mockup",
+      "Os moradores não precisam mais sair tarde da noite pra comprar o básico. É prático, organizado e sempre abastecido.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/minimercado-1.webp",
+    imageAlt: "Minimercado autônomo MarketGRU no Condomínio The Brick",
   },
   {
-    id: "atlas",
-    icon: Compass,
-    iconLabel: "Atlas Studio",
-    title: "A two week brand and product sprint for a creative studio.",
+    id: "first-apto",
+    icon: Building2,
+    iconLabel: "First Apto",
+    title: "Instalação limpa, sem dor de cabeça e que valoriza o prédio.",
     description:
-      "End to end identity, marketing site, and a small product surface designed to feel quietly confident across every touchpoint.",
-    meta: "Product & Brand Designer, 2025",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/24599416/file/original-1ae5075dcd129aebb16bdbca24b41ac7.png?resize=1024x768&vertical=center",
-    imageAlt: "Atlas Studio brand and product sprint mockup",
+      "A instalação foi tudo limpo e sem dor de cabeça. Agregou valor ao prédio e os condôminos adoraram a comodidade.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/ambiente-moderno.webp",
+    imageAlt: "Minimercado autônomo MarketGRU no First Apto",
   },
   {
-    id: "rhythm",
-    icon: LineChart,
-    iconLabel: "Rhythm",
-    title: "Calm analytics for indie founders.",
+    id: "clavi-ecco-tower",
+    icon: Building2,
+    iconLabel: "Clavi Ecco Tower",
+    title: "Café, água e snack ali do lado, sem perder tempo.",
     description:
-      "A weekly digest that turns raw product data into a simple narrative. Built so you can read it on a Sunday with coffee.",
-    meta: "Founder & Designer, 2024",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/47357856/file/75841fa59f32f05ca6c5ddf02d08dfe6.png?resize=1024x768&vertical=center",
-    imageAlt: "Rhythm calm analytics mockup",
+      "Virou o melhor amigo na hora do almoço. Café, água, snack saudável, tudo ali do lado, sem perder tempo no trânsito.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/compra-facil.webp",
+    imageAlt: "Minimercado autônomo MarketGRU na Clavi Ecco Tower",
   },
   {
-    id: "groove",
-    icon: Wand2,
-    iconLabel: "Groove",
-    title:
-      "Reimagining the booking flow for a music school, asisting thousands of students in finding the right lessons.",
+    id: "terrazzo",
+    icon: Building2,
+    iconLabel: "Terrazzo Condomínio Clube",
+    title: "Zero custo, reposição em dia e atendimento atencioso.",
     description:
-      "I led a redesign of the lesson booking experience, cutting drop off in half and making the schedule feel like a calendar people actually want to open.",
-    meta: "Lead Designer, 2023",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/43955214/file/original-d4cde1de803e84b97d8892e3444c04b0.png?resize=1024x768&vertical=center",
-    imageAlt: "Groove music school booking flow mockup",
+      "A melhor decisão da assembleia. Zero custo pro condomínio, reposição em dia e atendimento atencioso sempre que precisamos.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/mais-protecao.webp",
+    imageAlt: "Minimercado autônomo MarketGRU no Terrazzo Condomínio Clube",
   },
   {
-    id: "fieldnote",
-    icon: Layers,
-    iconLabel: "Fieldnote",
-    title:
-      "A pocket sized research tool for design teams that want to get out of their docs and into the world.",
+    id: "escola-nelsom",
+    icon: Building2,
+    iconLabel: "Escola Técnica de Música Nelsom",
+    title: "Preços justos e pagamento pelo celular super rápido.",
     description:
-      "Capture quotes, tag patterns, and synthesize themes in one place. The interface stays out of the way so the thinking can happen.",
-    meta: "Design Engineer, 2024",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/30310902/file/original-621e7fe47be9d11ee14544456c693bec.png?resize=1024x768&vertical=center",
-    imageAlt: "Fieldnote pocket sized research tool mockup",
+      "Acabou o item às 23h? Resolve na hora. Os preços são justos e o pagamento pelo celular é super rápido.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/faq.webp",
+    imageAlt:
+      "Minimercado autônomo MarketGRU na Escola Técnica de Música Nelsom",
   },
   {
-    id: "talkback",
-    icon: Bot,
-    iconLabel: "Talkback",
-    title: "A friendlier interface for talking to language models.",
+    id: "alianca",
+    icon: Building2,
+    iconLabel: "Imobiliária Aliança Imóveis",
+    title: "Variedade que surpreende e comodidade que não tem preço.",
     description:
-      "An exploration of how AI chat could feel less like a terminal and more like a conversation with a curious friend.",
-    meta: "Independent Project, 2025",
-    imageRatio: 1024 / 768,
-    image:
-      "https://cdn.dribbble.com/userupload/16560717/file/original-c6f745d50302d66609bfe080f99f5396.png?resize=1024x768&vertical=center",
-    imageAlt: "Talkback friendlier AI chat interface mockup",
+      "A variedade de produtos surpreende pro tamanho, e a praticidade de comprar sem sair do prédio não tem preço.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/blog/investir-em-mercado-autonomo.webp",
+    imageAlt: "Minimercado autônomo MarketGRU na Imobiliária Aliança Imóveis",
   },
 ];
 
-export type ProjectsProps = {
-  withHeadline?: boolean;
-  viewMoreVisible?: boolean;
-};
-
-export function Projects({
-  withHeadline = false,
-  viewMoreVisible = false,
-}: ProjectsProps): ReactNode {
-  const items = viewMoreVisible ? PROJECTS.slice(0, 4) : PROJECTS;
-
+export function Projects(): ReactNode {
   return (
     <section className="relative w-full [font-family:var(--font-poppins)]">
-      <div className="mx-auto w-full px-6 sm:px-24">
-        {withHeadline ? (
-          <FadeIn className="flex flex-col items-center gap-5 pt-12 pb-10 text-center sm:pt-20 sm:pb-14">
-            <h2 className="text-foreground font-serif text-[2.5rem] leading-[1.05] font-medium tracking-tight md:text-[3rem] lg:text-[3.5rem]">
-              <SplitText
-                text="My projects"
-                tag="span"
-                className="[font-family:var(--font-gohan)] tracking-wider"
-                textAlign="center"
-                delay={25}
-                duration={0.8}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-50px"
-              />
-            </h2>
-            <p className="text-foreground/65 max-w-[33ch] text-[18px] leading-[1.45] tracking-tight sm:text-[20px]">
-              From playful experiments to thoughtful systems, a look at the work
-              I&rsquo;m proud to have shipped.
-            </p>
-          </FadeIn>
-        ) : null}
+      <div className="mx-auto w-full px-6 pt-30 sm:px-24 sm:pt-50">
+        <FadeIn className="flex flex-col items-center gap-5 pb-10 text-center sm:pb-14">
+          <h2 className="text-foreground font-serif text-[2rem] leading-[1.05] font-medium tracking-tight md:text-[2.5rem] lg:text-[3rem]">
+            <SplitText
+              text="Nossas unidades"
+              tag="span"
+              className="[font-family:var(--font-gohan)] tracking-wider"
+              textAlign="center"
+              delay={25}
+              duration={0.8}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-50px"
+            />
+          </h2>
+          <p className="text-foreground/65 max-w-[46ch] text-[18px] leading-[1.45] tracking-tight sm:text-[20px]">
+            Condomínios, empresas e instituições que já contam com um
+            minimercado autônomo MarketGRU no dia a dia.
+          </p>
+        </FadeIn>
 
         <div className="columns-1 gap-6 md:columns-2 md:gap-7">
-          {items.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+          {UNIDADES.map((unidade, index) => (
+            <UnidadeCard key={unidade.id} unidade={unidade} index={index} />
           ))}
         </div>
-
-        {viewMoreVisible ? (
-          <div className="mt-12 flex justify-center sm:mt-16">
-            <Link
-              href="/projects"
-              className="border-foreground/8 focus-ring group bg-background text-foreground hover:bg-foreground/5 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-medium transition-colors"
-            >
-              View all projects
-              <ArrowRight
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                aria-hidden="true"
-              />
-            </Link>
-          </div>
-        ) : null}
       </div>
     </section>
   );
 }
 
-function ProjectCard({
-  project,
+function UnidadeCard({
+  unidade,
   index,
 }: {
-  project: Project;
+  unidade: Unidade;
   index: number;
 }): ReactNode {
-  const Icon = project.icon;
+  const Icon = unidade.icon;
   return (
     <FadeIn
       delay={Math.min(index * 0.06, 0.3)}
       className="mb-6 break-inside-avoid md:mb-7"
     >
-      <article className="project-card border-foreground/8 bg-background flex cursor-pointer flex-col gap-4 rounded-3xl border p-3 sm:p-3.5">
+      <article className="project-card group border-foreground/8 bg-background flex cursor-default flex-col gap-4 rounded-3xl border p-3 transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl sm:p-3.5">
         <header className="flex items-center gap-2.5 px-1 pt-2">
-          <span className="border-foreground/10 bg-background inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border">
+          <span className="border-foreground/10 bg-background inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-transform duration-300 ease-out group-hover:scale-110">
             <Icon className="text-foreground h-3.5 w-3.5" aria-hidden="true" />
           </span>
-          <span className="text-foreground text-sm font-medium tracking-tight">
-            {project.iconLabel}
+          <span className="text-foreground text-[20px] font-medium tracking-tight">
+            {unidade.iconLabel}
           </span>
         </header>
 
         <div
           className="project-card__image ring-foreground/5 bg-foreground/5 relative w-full overflow-hidden rounded-2xl ring-1"
-          style={{ aspectRatio: project.imageRatio }}
+          style={{ aspectRatio: unidade.imageRatio }}
         >
           <div className="project-card__image-inner">
             <Image
-              src={project.image}
-              alt={project.imageAlt}
+              src={unidade.image}
+              alt={unidade.imageAlt}
               fill
               sizes="(min-width: 1024px) 540px, (min-width: 768px) 45vw, 100vw"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               priority={index < 2}
             />
           </div>
@@ -222,7 +172,7 @@ function ProjectCard({
         <div className="flex flex-col gap-2.5 px-1 pb-1">
           <h3 className="text-foreground font-serif text-[20px] leading-[1.2] font-medium tracking-tight sm:text-[22px]">
             <SplitText
-              text={project.title}
+              text={unidade.title}
               tag="span"
               className="[font-family:var(--font-gohan)] tracking-wider"
               textAlign="left"
@@ -237,12 +187,12 @@ function ProjectCard({
             />
           </h3>
           <p className="text-foreground/65 text-[14px] leading-normal tracking-tight sm:text-[15px]">
-            {project.description}
+            {unidade.description}
           </p>
         </div>
 
         <p className="text-foreground/50 px-1 pb-2 text-[12px] tracking-tight">
-          {project.meta}
+          {unidade.meta}
         </p>
       </article>
     </FadeIn>

@@ -1,20 +1,18 @@
-import { Education } from "@/components/sobre-nos/education";
-import { Experience } from "@/components/sobre-nos/experience";
-import { PolaroidStrip } from "@/components/sobre-nos/polaroid-strip";
-import { Skills } from "@/components/sobre-nos/skills";
 import { Stack } from "@/components/sobre-nos/stack";
+import { Valores } from "@/components/sobre-nos/valores";
 import { ContactCard } from "@/components/contact/contact-card";
 import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
   title: "Sobre Nós",
   description:
-    "Conheça nossa história, missão e valores. Desenvolvemos soluções inovadoras com foco em qualidade, tecnologia e resultados.",
+    "Conheça a MarketGRU: minimercados autônomos para condomínios e empresas. Nossa missão, valores e as marcas que levamos até você, 24 horas por dia, sem custo de instalação.",
   path: "/sobre-nos",
 });
 
@@ -22,80 +20,80 @@ export default function AboutPage(): ReactNode {
   return (
     <main id="main-content" className="relative flex flex-1 flex-col">
       <GrainientBackground className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden" />
-      <section className="mx-auto w-full max-w-312 pt-40 sm:pt-56">
-        <PolaroidStrip />
-      </section>
 
-      <section className="mx-auto w-full max-w-160 px-6 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24">
-        <FadeIn delay={0.5}>
-          <div className="border-foreground/5 bg-foreground/1.5 dark:bg-foreground/3 rounded-4xl border p-8 sm:p-12">
-            <h1 className="text-foreground font-serif text-[1.75rem] font-medium tracking-tight sm:text-[2rem]">
-              <SplitText
-                text="Hello! I'm Josh Mercer."
-                tag="span"
-                className="[font-family:var(--font-gohan)] tracking-wider"
-                textAlign="left"
-                delay={25}
-                duration={0.8}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-50px"
+      <section className="mx-auto w-full px-6 pt-40 pb-16 sm:px-30 sm:pt-56 sm:pb-24">
+        <FadeIn delay={0.3}>
+          <div className="border-foreground/10 bg-background/80 flex flex-col gap-8 rounded-4xl border p-8 backdrop-blur-xl sm:p-12 lg:flex-row lg:items-stretch lg:gap-12">
+            <div className="flex-1">
+              <h1 className="text-foreground font-serif text-[1.75rem] font-medium tracking-tight sm:text-[2rem]">
+                <SplitText
+                  text="Somos a MarketGRU"
+                  tag="span"
+                  className="[font-family:var(--font-gohan)] tracking-wider"
+                  textAlign="left"
+                  delay={25}
+                  duration={0.8}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-50px"
+                />
+              </h1>
+              <div className="text-foreground/75 mt-8 space-y-6 [font-family:var(--font-poppins)] text-[17px] leading-[1.7] tracking-tight sm:text-[18px]">
+                <p>
+                  A{" "}
+                  <strong className="text-foreground font-semibold">
+                    MarketGRU
+                  </strong>{" "}
+                  nasceu para transformar a forma como condomínios e empresas
+                  oferecem comodidade no dia a dia. Instalamos{" "}
+                  <strong className="text-foreground font-semibold">
+                    minimercados autônomos
+                  </strong>{" "}
+                  que funcionam 24 horas por dia, sem filas, sem operador de
+                  caixa e sem custo de implantação.
+                </p>
+                <p>
+                  Tudo começou com uma ideia simples: e se o morador pudesse
+                  comprar aquilo que precisa a qualquer hora, dentro do próprio
+                  prédio? A partir daí, unimos{" "}
+                  <strong className="text-foreground font-semibold">
+                    tecnologia, praticidade e produtos de marcas conhecidas
+                  </strong>{" "}
+                  para criar mercados que rodam sozinhos, com pagamento por app,
+                  Pix ou cartão.
+                </p>
+                <p>
+                  Hoje levamos mais{" "}
+                  <strong className="text-foreground font-semibold">
+                    conforto para os moradores e valorização para o condomínio
+                  </strong>
+                  , sempre com reposição contínua, atendimento próximo e o
+                  compromisso de fazer cada parceria durar.
+                </p>
+              </div>
+            </div>
+            <div className="group ring-foreground/5 relative min-h-[16rem] w-full shrink-0 overflow-hidden rounded-3xl ring-1 transition-shadow duration-500 hover:shadow-2xl lg:min-h-0 lg:w-[22rem]">
+              <Image
+                src="/minimercado-1.webp"
+                alt="Minimercado autônomo MarketGRU instalado em condomínio"
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                sizes="(max-width: 1024px) 100vw, 22rem"
+                priority
               />
-            </h1>
-            <div className="text-foreground/75 mt-8 space-y-6 text-[17px] leading-[1.7] tracking-tight sm:text-[18px]">
-              <p>
-                A{" "}
-                <strong className="text-foreground font-semibold">
-                  product designer and frontend engineer
-                </strong>{" "}
-                passionate about building intuitive, human-centered digital
-                experiences. With a background in{" "}
-                <strong className="text-foreground font-semibold">
-                  visual craft
-                </strong>{" "}
-                and{" "}
-                <strong className="text-foreground font-semibold">
-                  interaction design
-                </strong>
-                , I bring a unique blend of design thinking and technical
-                execution to every project.
-              </p>
-              <p>
-                My journey into design began when I realized how often good user
-                experience was missing from powerful tools. That led me to
-                embrace{" "}
-                <strong className="text-foreground font-semibold">
-                  user-centered design
-                </strong>{" "}
-                as both a mindset and a craft, one that balances clarity,
-                creativity, and functionality.
-              </p>
-              <p>
-                Currently leading design at small product teams shipping
-                software for{" "}
-                <strong className="text-foreground font-semibold">
-                  creative professionals
-                </strong>
-                , I&rsquo;m always looking for opportunities to{" "}
-                <strong className="text-foreground font-semibold">
-                  shape thoughtful interfaces and build scalable design systems
-                </strong>
-                .
-              </p>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </div>
           </div>
         </FadeIn>
       </section>
 
-      <section className="mx-auto w-full max-w-[40rem] px-6 pb-20 sm:px-10 sm:pb-28">
+      <section className="mx-auto w-full px-6 pb-20 sm:px-30">
         <FadeIn delay={0.1}>
           <div className="flex flex-col gap-10">
-            <Experience />
-            <Education />
-            <Skills />
+            <Valores />
             <Stack />
           </div>
         </FadeIn>
