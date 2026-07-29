@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Sobre Nós", href: "/sobre-nos" },
   { label: "Blog", href: "/blog" },
   { label: "Contato", href: "/contato" },
+  { label: "Pesquisa de Satisfação", href: "/pesquisa" },
 ];
 
 /* ─── WhatsApp SVG ───────────────────────────────────── */
