@@ -308,7 +308,7 @@ function OptionRow({
   onClick,
 }: {
   active: boolean;
-  emoji?: string;
+  emoji?: string | undefined;
   label: string;
   shape: "radio" | "check";
   onClick: () => void;

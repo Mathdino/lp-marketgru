@@ -3,7 +3,7 @@ export type QuestionType = "single" | "multi" | "text";
 export interface Option {
   value: string;
   label: string;
-  emoji?: string;
+  emoji?: string | undefined;
 }
 
 export interface Question {
@@ -109,8 +109,8 @@ export interface SurveyResponse {
   q2: string;
   q3: string;
   q4: string[];
-  q4_outro?: string;
+  q4_outro?: string | undefined;
   q5: string;
   q6: string;
-  q6_outro?: string;
+  q6_outro?: string | undefined;
 }

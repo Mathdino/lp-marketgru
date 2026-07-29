@@ -18,9 +18,10 @@ export async function GET(): Promise<NextResponse> {
   const counts: Record<string, Record<string, number>> = {};
   for (const q of questions) {
     if (q.type === "single" || q.type === "multi") {
-      counts[q.id] = {};
-      for (const opt of q.options ?? []) counts[q.id][opt.value] = 0;
-      if (q.allowOther) counts[q.id]["outro"] = 0;
+      const c: Record<string, number> = {};
+      for (const opt of q.options ?? []) c[opt.value] = 0;
+      if (q.allowOther) c["outro"] = 0;
+      counts[q.id] = c;
     }
   }
 

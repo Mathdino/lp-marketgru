@@ -8,7 +8,18 @@ export const PANEL_PASSWORD = "markerGRU@1";
 export const SESSION_COOKIE = "mg_panel_session";
 export const SESSION_TOKEN = "mg-panel-authenticated-v1";
 
-const sql = neon(process.env.DATABASE_URL ?? "");
+type SqlClient = ReturnType<typeof neon>;
+let _sql: SqlClient | null = null;
+
+/** Cliente Neon criado sob demanda (evita avaliar no build sem env). */
+function getSql(): SqlClient {
+  if (!_sql) {
+    const url = process.env.DATABASE_URL;
+    if (!url) throw new Error("DATABASE_URL não configurada.");
+    _sql = neon(url);
+  }
+  return _sql;
+}
 
 let ready: Promise<void> | null = null;
 
@@ -16,7 +27,7 @@ let ready: Promise<void> | null = null;
 function ensureTable(): Promise<void> {
   if (!ready) {
     ready = (async () => {
-      await sql`
+      await getSql()`
         CREATE TABLE IF NOT EXISTS survey_responses (
           id          TEXT PRIMARY KEY,
           created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -71,7 +82,7 @@ function toResponse(r: Row): SurveyResponse {
 
 export async function readResponses(): Promise<SurveyResponse[]> {
   await ensureTable();
-  const rows = (await sql`
+  const rows = (await getSql()`
     SELECT id, created_at, q1, q2, q3, q4, q4_outro, q5, q6, q6_outro
     FROM survey_responses
     ORDER BY created_at ASC
@@ -81,7 +92,7 @@ export async function readResponses(): Promise<SurveyResponse[]> {
 
 export async function addResponse(entry: SurveyResponse): Promise<void> {
   await ensureTable();
-  await sql`
+  await getSql()`
     INSERT INTO survey_responses
       (id, created_at, q1, q2, q3, q4, q4_outro, q5, q6, q6_outro)
     VALUES (
