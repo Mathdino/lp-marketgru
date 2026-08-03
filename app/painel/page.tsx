@@ -3,18 +3,27 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from "react";
 import { motion } from "motion/react";
 import { Eye, EyeOff, Loader2, Lock, LogOut, RefreshCw } from "lucide-react";
-import { questions, BRAND, type Question } from "@/lib/survey";
+import { questions, BRAND, CONDOMINIOS, type Question } from "@/lib/survey";
+
+interface TextItem {
+  text: string;
+  condominio: string;
+}
 
 interface PanelData {
   total: number;
   counts: Record<string, Record<string, number>>;
   textAnswers: {
-    q2: string[];
-    q3: string[];
-    outros: { q4: string[]; q6: string[] };
+    q2: TextItem[];
+    q3: TextItem[];
+    outros: { q4: TextItem[]; q6: TextItem[] };
   };
   responses: Array<Record<string, unknown>>;
 }
+
+const CONDO_LABEL: Record<string, string> = Object.fromEntries(
+  CONDOMINIOS.map((c) => [c.value, c.label])
+);
 
 export default function PainelPage() {
   const [authed, setAuthed] = useState(false);
@@ -315,7 +324,21 @@ function CountCard({
   );
 }
 
-function TextCard({ title, items }: { title: string; items: string[] }) {
+function TextCard({ title, items }: { title: string; items: TextItem[] }) {
+  // Agrupa as respostas por condomínio para saber onde aplicar melhorias.
+  const groups = new Map<string, string[]>();
+  for (const it of items) {
+    const key = it.condominio || "sem_condominio";
+    const arr = groups.get(key) ?? [];
+    arr.push(it.text);
+    groups.set(key, arr);
+  }
+  // Ordem: segue a lista de condomínios, "sem informação" por último.
+  const order = [...CONDOMINIOS.map((c) => c.value), "sem_condominio"];
+  const sortedKeys = [...groups.keys()].sort(
+    (a, b) => order.indexOf(a) - order.indexOf(b)
+  );
+
   return (
     <div className="border-border bg-card rounded-3xl border p-5 shadow-sm">
       <h3 className="mb-3 flex items-center justify-between text-sm font-semibold">
@@ -327,16 +350,38 @@ function TextCard({ title, items }: { title: string; items: string[] }) {
       {items.length === 0 ? (
         <p className="text-muted-foreground text-sm">Nenhuma resposta ainda.</p>
       ) : (
-        <ul className="flex max-h-72 flex-col gap-2 overflow-y-auto pr-1">
-          {items.map((t, i) => (
-            <li
-              key={i}
-              className="bg-muted rounded-xl px-3 py-2 text-sm leading-snug"
-            >
-              {t}
-            </li>
-          ))}
-        </ul>
+        <div className="flex max-h-96 flex-col gap-4 overflow-y-auto pr-1">
+          {sortedKeys.map((key) => {
+            const list = groups.get(key) ?? [];
+            const label =
+              key === "sem_condominio"
+                ? "Sem condomínio informado"
+                : (CONDO_LABEL[key] ?? key);
+            return (
+              <div key={key}>
+                <p
+                  className="mb-2 flex items-center justify-between text-xs font-semibold tracking-wide uppercase"
+                  style={{ color: BRAND.primary }}
+                >
+                  {label}
+                  <span className="text-muted-foreground font-normal normal-case">
+                    {list.length}
+                  </span>
+                </p>
+                <ul className="flex flex-col gap-2">
+                  {list.map((t, i) => (
+                    <li
+                      key={i}
+                      className="bg-muted rounded-xl px-3 py-2 text-sm leading-snug"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

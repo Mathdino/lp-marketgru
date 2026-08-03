@@ -27,10 +27,12 @@ let ready: Promise<void> | null = null;
 function ensureTable(): Promise<void> {
   if (!ready) {
     ready = (async () => {
-      await getSql()`
+      const sql = getSql();
+      await sql`
         CREATE TABLE IF NOT EXISTS survey_responses (
           id          TEXT PRIMARY KEY,
           created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+          condominio  TEXT NOT NULL DEFAULT '',
           q1          TEXT NOT NULL,
           q2          TEXT DEFAULT '',
           q3          TEXT DEFAULT '',
@@ -40,6 +42,11 @@ function ensureTable(): Promise<void> {
           q6          TEXT NOT NULL,
           q6_outro    TEXT
         )
+      `;
+      // Migração incremental: adiciona coluna em bancos já existentes sem resetar.
+      await sql`
+        ALTER TABLE survey_responses
+        ADD COLUMN IF NOT EXISTS condominio TEXT NOT NULL DEFAULT ''
       `;
     })().catch((err) => {
       ready = null; // permite retry em caso de falha
@@ -52,6 +59,7 @@ function ensureTable(): Promise<void> {
 interface Row {
   id: string;
   created_at: string | Date;
+  condominio: string | null;
   q1: string;
   q2: string | null;
   q3: string | null;
@@ -69,6 +77,7 @@ function toResponse(r: Row): SurveyResponse {
       r.created_at instanceof Date
         ? r.created_at.toISOString()
         : new Date(r.created_at).toISOString(),
+    condominio: r.condominio ?? "",
     q1: r.q1,
     q2: r.q2 ?? "",
     q3: r.q3 ?? "",
@@ -83,7 +92,7 @@ function toResponse(r: Row): SurveyResponse {
 export async function readResponses(): Promise<SurveyResponse[]> {
   await ensureTable();
   const rows = (await getSql()`
-    SELECT id, created_at, q1, q2, q3, q4, q4_outro, q5, q6, q6_outro
+    SELECT id, created_at, condominio, q1, q2, q3, q4, q4_outro, q5, q6, q6_outro
     FROM survey_responses
     ORDER BY created_at ASC
   `) as Row[];
@@ -94,10 +103,11 @@ export async function addResponse(entry: SurveyResponse): Promise<void> {
   await ensureTable();
   await getSql()`
     INSERT INTO survey_responses
-      (id, created_at, q1, q2, q3, q4, q4_outro, q5, q6, q6_outro)
+      (id, created_at, condominio, q1, q2, q3, q4, q4_outro, q5, q6, q6_outro)
     VALUES (
       ${entry.id},
       ${entry.createdAt},
+      ${entry.condominio},
       ${entry.q1},
       ${entry.q2},
       ${entry.q3},

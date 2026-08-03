@@ -13,6 +13,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const body = await request.json();
 
+    const condominio = str(body.condominio);
     const q1 = str(body.q1);
     const q4 = Array.isArray(body.q4)
       ? body.q4.filter((x: unknown) => typeof x === "string")
@@ -21,7 +22,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const q6 = str(body.q6);
 
     // Validação mínima dos campos obrigatórios
-    if (!q1 || q4.length === 0 || !q5 || !q6) {
+    if (!condominio || !q1 || q4.length === 0 || !q5 || !q6) {
       return NextResponse.json(
         { ok: false, error: "Responda todas as perguntas obrigatórias." },
         { status: 400 },
@@ -31,6 +32,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const entry: SurveyResponse = {
       id: `${Date.now()}-${Math.round(Number.MAX_SAFE_INTEGER * Math.random())}`,
       createdAt: new Date().toISOString(),
+      condominio,
       q1,
       q2: str(body.q2),
       q3: str(body.q3),

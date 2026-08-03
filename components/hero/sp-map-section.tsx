@@ -7,7 +7,7 @@ import SplitText from "@/components/ui/split-text";
 
 /* Stats — ajuste valores conforme a empresa (4 itens em grid 2×2) */
 const STATS = [
-  { value: 6, suffix: "+", label: "Minimercados instalados em SP" },
+  { value: 7, suffix: "+", label: "Minimercados instalados em SP" },
   {
     value: 12,
     suffix: "K+",

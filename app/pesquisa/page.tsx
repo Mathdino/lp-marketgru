@@ -8,6 +8,7 @@ import { questions, BRAND, type Question } from "@/lib/survey";
 import { cn } from "@/lib/utils";
 
 type Answers = {
+  condominio: string;
   q1: string;
   q2: string;
   q3: string;
@@ -19,6 +20,7 @@ type Answers = {
 };
 
 const initial: Answers = {
+  condominio: "",
   q1: "",
   q2: "",
   q3: "",
@@ -37,6 +39,7 @@ export default function PesquisaPage() {
 
   const answered = useMemo(() => {
     let n = 0;
+    if (answers.condominio) n++;
     if (answers.q1) n++;
     if (answers.q2.trim()) n++;
     if (answers.q3.trim()) n++;
@@ -62,8 +65,14 @@ export default function PesquisaPage() {
 
   async function handleSubmit() {
     setError("");
-    if (!answers.q1 || answers.q4.length === 0 || !answers.q5 || !answers.q6) {
-      setError("Responda as perguntas obrigatórias (1, 4, 5 e 6).");
+    if (
+      !answers.condominio ||
+      !answers.q1 ||
+      answers.q4.length === 0 ||
+      !answers.q5 ||
+      !answers.q6
+    ) {
+      setError("Responda as perguntas obrigatórias (1, 2, 5, 6 e 7).");
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }

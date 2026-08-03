@@ -19,6 +19,19 @@ type Unidade = {
 
 const UNIDADES: Unidade[] = [
   {
+    id: "palacio-das-artes",
+    icon: Building2,
+    iconLabel: "Residencial Palácio das artes",
+    title: "Comodidade que combina com a rotina de quem mora aqui.",
+    description:
+      "Os moradores têm o minimercado autônomo à disposição a qualquer hora, com praticidade, variedade e pagamento rápido pelo celular.",
+    meta: "Unidade MarketGRU",
+    imageRatio: 4 / 3,
+    image: "/unidades/palacio-das-artes/img-5.webp",
+    imageAlt:
+      "Minimercado autônomo MarketGRU no Residencial Palácio das artes",
+  },
+  {
     id: "the-brick",
     icon: Building2,
     iconLabel: "Condomínio The Brick",

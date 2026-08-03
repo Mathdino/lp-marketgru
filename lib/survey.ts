@@ -24,7 +24,33 @@ export const BRAND = {
   amber: "#f59e0b",
 } as const;
 
+/** Opções de condomínio onde a pesquisa é respondida. */
+export const CONDOMINIOS: Option[] = [
+  { value: "the_brick", label: "Condomínio The Brick", emoji: "🏢" },
+  { value: "terrazzo", label: "Terrazzo Condomínio Clube", emoji: "🏢" },
+  { value: "first_apto", label: "First Apto", emoji: "🏢" },
+  {
+    value: "escola_nelson",
+    label: "Escola Técnica de Música Nelsom",
+    emoji: "🎵",
+  },
+  { value: "clavi_ecco", label: "Clavi Ecco Tower", emoji: "🏢" },
+  { value: "imob_alianca", label: "Imobiliária Aliança Imóveis", emoji: "🏠" },
+  {
+    value: "palacio_artes",
+    label: "Residencial Palácio das artes",
+    emoji: "🏢",
+  },
+];
+
 export const questions: Question[] = [
+  {
+    id: "condominio",
+    title: "Em qual condomínio você está respondendo a pesquisa?",
+    type: "single",
+    required: true,
+    options: CONDOMINIOS,
+  },
   {
     id: "q1",
     title: "Como você avalia o minimercado da MarketGru?",
@@ -105,6 +131,7 @@ export const questions: Question[] = [
 export interface SurveyResponse {
   id: string;
   createdAt: string;
+  condominio: string;
   q1: string;
   q2: string;
   q3: string;

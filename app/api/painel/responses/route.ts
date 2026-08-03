@@ -26,6 +26,9 @@ export async function GET(): Promise<NextResponse> {
   }
 
   for (const r of responses) {
+    if (counts.condominio && r.condominio)
+      counts.condominio[r.condominio] =
+        (counts.condominio[r.condominio] ?? 0) + 1;
     if (counts.q1 && r.q1) counts.q1[r.q1] = (counts.q1[r.q1] ?? 0) + 1;
     if (counts.q5 && r.q5) counts.q5[r.q5] = (counts.q5[r.q5] ?? 0) + 1;
     if (counts.q6 && r.q6) counts.q6[r.q6] = (counts.q6[r.q6] ?? 0) + 1;
@@ -34,12 +37,18 @@ export async function GET(): Promise<NextResponse> {
     }
   }
 
+  // Respostas escritas com o condomínio de origem, para separar por local.
+  const withCond = (pick: (r: (typeof responses)[number]) => string) =>
+    responses
+      .map((r) => ({ text: pick(r), condominio: r.condominio || "" }))
+      .filter((x) => x.text);
+
   const textAnswers = {
-    q2: responses.map((r) => r.q2).filter(Boolean),
-    q3: responses.map((r) => r.q3).filter(Boolean),
+    q2: withCond((r) => r.q2),
+    q3: withCond((r) => r.q3),
     outros: {
-      q4: responses.map((r) => r.q4_outro).filter(Boolean),
-      q6: responses.map((r) => r.q6_outro).filter(Boolean),
+      q4: withCond((r) => r.q4_outro ?? ""),
+      q6: withCond((r) => r.q6_outro ?? ""),
     },
   };
 
