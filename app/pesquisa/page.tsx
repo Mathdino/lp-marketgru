@@ -94,7 +94,7 @@ export default function PesquisaPage() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-4 pt-28 pb-24 sm:pt-32">
+    <main className="mx-auto w-full max-w-2xl px-4 pt-28 pb-24 [font-family:var(--font-poppins)] sm:pt-32">
       {/* Cabeçalho */}
       <div className="mb-6 text-center">
         <span
@@ -105,7 +105,16 @@ export default function PesquisaPage() {
         </span>
         <h1 className="mt-4 [font-family:var(--font-gohan)] text-3xl text-white sm:text-4xl">
           Sua opinião move a{" "}
-          <span style={{ color: BRAND.primary }}>MarketGru</span>
+          <span
+            style={{
+              color: BRAND.primary,
+              WebkitTextStroke: "2px #fff",
+              paintOrder: "stroke fill",
+              letterSpacing: "0.05em",
+            }}
+          >
+            MarketGru
+          </span>
         </h1>
         <p className="mx-auto mt-2 max-w-md [font-family:var(--font-poppins)] text-sm text-white/85">
           Leva menos de 2 minutos. Suas respostas ajudam a deixar o minimercado
