@@ -3,19 +3,43 @@ import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { montarGrafo, schemaBreadcrumb, schemaWebPage } from "@/lib/schema";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
-  title: "Contato",
+  title: "Contato: agende a visita técnica",
   description:
-    "Minimercado para condomínios e empresas - Fácil, Rápido e Sem Custo. Ideal para oferecer conforto e praticidade no dia a dia.",
+    "Fale com a MarketGRU para instalar um minimercado autônomo no seu condomínio ou empresa. Visita técnica sem custo e sem compromisso, em São Paulo e região.",
   path: "/contato",
 });
 
 export default function ProjectsPage(): ReactNode {
+  /* ContactPage só existe nesta URL. Emitir em toda página seria dizer ao
+     Google que o site inteiro é uma página de contato. */
+  const grafo = montarGrafo([
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.marketgru.com.br/contato#contactpage",
+      url: "https://www.marketgru.com.br/contato",
+      name: "Contato MarketGRU",
+      inLanguage: "pt-BR",
+      about: { "@id": "https://www.marketgru.com.br/#organization" },
+    },
+    schemaWebPage({
+      canonical: "/contato",
+      nome: "Contato",
+      descricao:
+        "Fale com a MarketGRU para instalar um minimercado autônomo no seu condomínio ou empresa. Visita técnica sem custo e sem compromisso, em São Paulo e região.",
+    }),
+    schemaBreadcrumb([{ nome: "Contato", path: "/contato" }], "/contato"),
+  ]);
+
   return (
-    <main id="main-content" className="relative flex flex-1 flex-col">
+    <>
+      <JsonLd data={grafo} />
+      <main id="main-content" className="relative flex flex-1 flex-col">
       <GrainientBackground className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden" />
       <section className="mx-auto w-full px-6 pt-44 sm:px-10">
         <FadeIn className="flex flex-col items-center gap-5 text-center">
@@ -43,5 +67,6 @@ export default function ProjectsPage(): ReactNode {
       <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
+    </>
   );
 }

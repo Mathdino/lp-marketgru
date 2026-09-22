@@ -24,7 +24,10 @@ export function HeroCtas(): ReactNode {
           transition={{ layout: { duration: 0.55, ease: EASE } }}
         >
           <Link
-            href="/projects"
+            /* /projects não existe neste site (é rota do template de origem):
+               o botão caía na 404. A intenção aqui é conversão, então vai para
+               o formulário. */
+            href="/contato"
             className="border-foreground/5 focus-ring group bg-background text-foreground inline-flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-2.5 [font-family:var(--font-poppins)] text-sm font-medium shadow-2xl transition-colors"
           >
             Quero no meu condomínio

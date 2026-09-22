@@ -5,6 +5,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  /* Acento da marca. Em tema claro o vermelho da logo (#f8301a) sobre branco
+     dá 3,9:1 — reprova no AA para texto normal. O tom de superfície é um
+     pouco mais fechado e passa; o claro fica para fundo escuro. */
+  --mg-accent: #d9260f;
+  --mg-accent-soft: #f8301a;
+  /* Acento sobre a moldura (--frame), que no tema claro é ESCURA. */
+  --frame-accent: #ff5a41;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --border: oklch(0.922 0 0);
@@ -16,6 +23,19 @@
   --frame-inset: 10px;
   --frame-radius: 28px;
   --nav-tray-height: 80px;
+  /* Folga lateral entre o conteúdo do menu e a borda da bandeja branca. */
+  --nav-tray-gutter: 28px;
+  /* Medidas do menu de desktop. São fluidas porque entre ~770px e ~950px de
+     tela o menu no tamanho cheio não cabe dentro da moldura da página: em vez
+     de deixar logo e botão de tema vazarem, o menu encolhe um pouco e volta ao
+     tamanho cheio assim que sobra espaço. */
+  --nav-control: clamp(2.25rem, 3.6vw, 3rem);
+  --nav-item-size: clamp(0.9375rem, 1.25vw, 1.0625rem);
+  --nav-item-px: clamp(0.5rem, 1.1vw, 1rem);
+  --nav-bar-gap: clamp(0.75rem, 1.9vw, 1.5rem);
+  /* Valor de partida, usado no HTML do servidor e enquanto a fonte carrega.
+     Assim que o menu existe no cliente, o Nav mede a largura real e reescreve
+     esta variável — ver components/layout/nav.tsx. */
   --nav-tray-width: clamp(28rem, 60vw, 67rem);
   --nav-tray-border: #f59e0b; /* sun — amber/golden */
   --font-sans:
@@ -56,6 +76,11 @@
 }
 
 .dark {
+  /* Sobre fundo escuro a conta inverte: o tom fechado some, o claro lê. */
+  --mg-accent: #ff5a41;
+  --mg-accent-soft: #f8301a;
+  /* No tema escuro a moldura é CLARA: o acento dela precisa ser o fechado. */
+  --frame-accent: #d9260f;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -427,6 +452,25 @@ html[data-theme-anim="1"]::view-transition-new(root) {
   }
 }
 
+/* Pulso dos anéis do raio de cobertura (components/atuacao/raio-cobertura). */
+@keyframes raio-pulso {
+  0% {
+    transform: scale(0.82);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(0.82);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="raio-pulso"] {
+    animation: none !important;
+  }
+}
+
 @keyframes canopy-horizontal {
   from {
     transform: translateX(0);
@@ -508,3 +552,96 @@ html[data-theme-anim="1"]::view-transition-new(root) {
     @apply font-sans;
   }
 }
+
+/* =============================================================================
+   MENU SUSPENSO DA NAV
+
+   O painel herda os mesmos tokens da barra (--frame / --frame-foreground), e
+   não cores fixas: é assim que ele acompanha a troca de tema sem uma segunda
+   regra .dark para manter em dia.
+   ========================================================================== */
+.site-nav__dropdown {
+  color: var(--frame-foreground);
+  background-color: var(--frame);
+  border-color: var(--frame-border);
+  box-shadow: 0 18px 44px rgb(0 0 0 / 0.22);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.site-nav__dropdown-item {
+  color: var(--frame-foreground);
+}
+
+/* A descrição de cada item PRECISA sair de --frame-foreground, não de
+   --foreground: dentro do painel o fundo é a moldura, que é escura no tema
+   claro e clara no escuro — ou seja, o inverso do fundo da página. Com
+   text-foreground/50 a linha "Residencial, 24h" ficava cinza-escuro sobre
+   preto no tema claro, ilegível. */
+.site-nav__dropdown-desc {
+  color: color-mix(in oklab, var(--frame-foreground) 65%, transparent);
+}
+
+.site-nav__dropdown-sep {
+  border-color: var(--frame-border);
+}
+
+.site-nav__dropdown-item:hover {
+  background-color: var(--frame-pill);
+}
+
+.site-nav__dropdown-icon {
+  color: var(--mg-accent-soft);
+  background-color: color-mix(in oklab, var(--mg-accent-soft) 14%, transparent);
+}
+
+.site-nav__dropdown-item:hover .site-nav__dropdown-icon {
+  background-color: color-mix(in oklab, var(--mg-accent-soft) 24%, transparent);
+}
+
+/* =============================================================================
+   PÁGINAS DE ATUAÇÃO — utilitários de leitura
+
+   Comprimento de linha e ritmo vertical valem mais que efeito: bloco de texto
+   acima de ~75 caracteres por linha cansa e derruba a leitura até o fim.
+   ========================================================================== */
+.atuacao-prosa p {
+  max-width: 68ch;
+}
+
+/* Rolagem horizontal de tabela com pista visível: sem isso o usuário não
+   descobre que existe conteúdo à direita. */
+[role="region"][aria-label] > table {
+  min-width: 34rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav__dropdown {
+    transition: none;
+  }
+}
+
+/* Estado aberto/fechado do submenu: CSS, não biblioteca de animação.
+   Fechado ele sai do fluxo de foco (visibility: hidden), então Tab não entra
+   em link invisível. */
+/* Só o deslocamento vertical entra aqui. A centralização horizontal é do
+   utilitário -translate-x-1/2, que no Tailwind v4 usa a propriedade
+   `translate` — repetir o -50% no `transform` some os dois e joga o painel
+   meia largura para a esquerda do gatilho. */
+.site-nav__dropdown[data-aberto="false"] {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.site-nav__dropdown[data-aberto="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+

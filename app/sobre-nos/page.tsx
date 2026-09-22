@@ -5,20 +5,44 @@ import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { montarGrafo, schemaBreadcrumb, schemaWebPage } from "@/lib/schema";
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
-  title: "Sobre Nós",
+  title: "Sobre a MarketGRU: quem opera os mercados",
   description:
-    "Conheça a MarketGRU: minimercados autônomos para condomínios e empresas. Nossa missão, valores e as marcas que levamos até você, 24 horas por dia, sem custo de instalação.",
+    "Quem é a MarketGRU: operamos minimercados autônomos em condomínios e empresas de São Paulo, com instalação sem custo e reposição feita pela nossa equipe.",
   path: "/sobre-nos",
 });
 
 export default function AboutPage(): ReactNode {
+  /* AboutPage aponta para a Organization: é o nó que diz a um motor
+     generativo que esta página descreve a EMPRESA, e não um serviço. */
+  const grafo = montarGrafo([
+    {
+      "@type": "AboutPage",
+      "@id": "https://www.marketgru.com.br/sobre-nos#aboutpage",
+      url: "https://www.marketgru.com.br/sobre-nos",
+      name: "Sobre a MarketGRU",
+      inLanguage: "pt-BR",
+      mainEntity: { "@id": "https://www.marketgru.com.br/#organization" },
+    },
+    schemaWebPage({
+      canonical: "/sobre-nos",
+      nome: "Sobre a MarketGRU",
+      descricao:
+        "Quem é a MarketGRU: operamos minimercados autônomos em condomínios e empresas de São Paulo, com instalação sem custo e reposição feita pela nossa equipe.",
+    }),
+    schemaBreadcrumb([{ nome: "Sobre Nós", path: "/sobre-nos" }], "/sobre-nos"),
+  ]);
+
   return (
-    <main id="main-content" className="relative flex flex-1 flex-col">
+    <>
+      <JsonLd data={grafo} />
+      <main id="main-content" className="relative flex flex-1 flex-col">
       <GrainientBackground className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden" />
 
       <section className="mx-auto w-full px-6 pt-40 pb-16 sm:px-30 sm:pt-56 sm:pb-24">
@@ -102,5 +126,6 @@ export default function AboutPage(): ReactNode {
       <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
+    </>
   );
 }

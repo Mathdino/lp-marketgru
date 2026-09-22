@@ -7,6 +7,15 @@ import { TudoPrecisaSection } from "@/components/hero/tudo-precisa-section";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import { createMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { FAQS } from "@/lib/faq-home";
+import {
+  montarGrafo,
+  schemaBreadcrumb,
+  schemaFaq,
+  schemaService,
+  schemaWebPage,
+} from "@/lib/schema";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import SplitText from "@/components/ui/split-text";
@@ -69,13 +78,42 @@ const TESTIMONIALS = [
 ];
 
 export const metadata: Metadata = createMetadata({
-  title: "Minimercado para condomínios",
-  description: `Soluções inteligentes para condomínios com tecnologia, segurança e praticidade para transformar a gestão e o dia a dia.`,
+  title: "Minimercado autônomo para condomínios",
+  description:
+    "Minimercado autônomo para condomínios e empresas, instalado sem custo: loja 24h, sem caixa, com pagamento por app, Pix ou cartão. São Paulo e região.",
   path: "/",
 });
 
 export default function HomePage(): ReactNode {
+  /* A home é a âncora de entidade da marca: Organization e WebSite saem em
+     toda página (montarGrafo), e aqui entram WebPage, breadcrumb e o Service
+     principal. O FAQPage da home é emitido pelo próprio FaqSection, a partir
+     das mesmas perguntas que ele renderiza. */
+  const grafo = montarGrafo([
+    schemaWebPage({
+      canonical: "/",
+      nome: "Minimercado autônomo para condomínios e empresas",
+      descricao:
+        "Minimercado autônomo para condomínios e empresas, instalado sem custo: loja 24h, sem caixa, com pagamento por app, Pix ou cartão. São Paulo e região.",
+    }),
+    schemaBreadcrumb([{ nome: "Início", path: "/" }], "/"),
+    schemaService({
+      canonical: "/",
+      nome: "Instalação de minimercado autônomo",
+      descricao:
+        "Instalação e operação de minimercado autônomo 24 horas em condomínios e empresas, sem custo de implantação para o contratante.",
+      audiencia: "Condomínios residenciais e empresas",
+    }),
+    /* As mesmas perguntas que o FaqSection renderiza logo abaixo. */
+    schemaFaq(
+      FAQS.map((f) => ({ q: f.question, a: f.answer })),
+      "/"
+    ),
+  ]);
+
   return (
+    <>
+      <JsonLd data={grafo} />
     <main id="main-content" className="flex flex-1 flex-col gap-10">
       <Hero />
       <TudoPrecisaSection />
@@ -114,5 +152,6 @@ export default function HomePage(): ReactNode {
       <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
+    </>
   );
 }

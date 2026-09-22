@@ -3,6 +3,13 @@ import { BLOG_POSTS } from "@/lib/blog-data";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  montarGrafo,
+  schemaArticle,
+  schemaBreadcrumb,
+  schemaWebPage,
+} from "@/lib/schema";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Image from "next/image";
@@ -48,9 +55,36 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  /* Article com author e publisher apontando para a Organization. O guia pede
+     E-E-A-T explícito: quem assina precisa existir no grafo, não só no rodapé. */
+  const canonical = `/blog/${slug}`;
+  const grafo = montarGrafo([
+    schemaWebPage({
+      canonical,
+      nome: post.title,
+      descricao: post.excerpt,
+      imagem: post.image,
+    }),
+    schemaBreadcrumb(
+      [
+        { nome: "Blog", path: "/blog" },
+        { nome: post.title, path: canonical },
+      ],
+      canonical
+    ),
+    schemaArticle({
+      canonical,
+      titulo: post.title,
+      descricao: post.excerpt,
+      imagem: post.image,
+      publicado: post.date,
+    }),
+  ]);
+
   return (
-    <main id="main-content" className="flex flex-1 flex-col">
-      <section className="mx-auto w-full max-w-7xl px-6 pt-44 pb-16">
+    <>
+      <JsonLd data={grafo} />
+    <main id="main-content" className="flex flex-1 flex-col">      <section className="mx-auto w-full max-w-7xl px-6 pt-44 pb-16">
         <FadeIn className="mb-8">
           <Link
             href="/blog"
@@ -114,5 +148,6 @@ export default async function BlogPostPage({
       <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
+    </>
   );
 }

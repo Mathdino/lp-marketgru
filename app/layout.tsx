@@ -4,7 +4,7 @@ import { Nav } from "@/components/layout/nav";
 import { PageBackdrop } from "@/components/layout/page-backdrop";
 import { Providers } from "@/components/layout/providers";
 import { SkipToContent } from "@/components/layout/skip-to-content";
-import { baseMetadata, siteConfig } from "@/lib/metadata";
+import { baseMetadata } from "@/lib/metadata";
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
@@ -14,25 +14,12 @@ import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-WKH53MEDQ1";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/logo-black.png`,
-  image: `${siteConfig.url}${siteConfig.ogImage}`,
-  description: siteConfig.description,
-  areaServed: {
-    "@type": "Country",
-    name: "Brasil",
-  },
-  knowsAbout: [
-    "Minimercado autônomo",
-    "Mercado autônomo para condomínios",
-    "Franquia de minimercado",
-    "Microfranquia",
-  ],
-};
+/* O nó Organization saía daqui, sem @id e sem endereço, e agora sai de
+   lib/schema.ts em TODA página que monta o grafo — com @id, contactPoint,
+   sameAs e areaServed reais.
+   Emitir os dois deixava duas Organizations sem @id em comum no mesmo HTML:
+   para o Google e para um crawler de IA, isso é duas entidades diferentes
+   disputando a mesma marca, não uma entidade descrita duas vezes. */
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -141,7 +128,16 @@ export default function RootLayout({
   children: ReactNode;
 }>): ReactNode {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    /* As variáveis das fontes ficam no <html>, não no <body>: globals.css
+       declara --font-sans no :root apontando para --font-poppins. Com as
+       variáveis só no body, o :root resolvia --font-sans como vazio e o body
+       herdava esse valor quebrado — resultado, tudo que não declarava
+       font-family explícito caía no Times New Roman do navegador. */
+    <html
+      lang="pt-BR"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${coolvetica.variable} ${gohan.variable} ${poppins.variable}`}
+    >
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -155,14 +151,8 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${coolvetica.variable} ${gohan.variable} ${poppins.variable} bg-background text-foreground min-h-screen [font-family:var(--font-poppins)] antialiased`}
-      >
+      <body className="bg-background text-foreground min-h-screen [font-family:var(--font-poppins)] antialiased">
         <Providers>
           <div className="site-frame site-frame--top" aria-hidden="true" />
           <div className="site-frame site-frame--left" aria-hidden="true" />

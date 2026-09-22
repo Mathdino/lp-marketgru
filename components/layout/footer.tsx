@@ -112,7 +112,7 @@ export function Footer(): ReactNode {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--frame-foreground)]/10 text-[var(--frame-foreground)] transition-colors hover:bg-[#f82f19]"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--frame-foreground)]/10 text-[var(--frame-foreground)] transition-colors hover:bg-[var(--frame-accent)]"
                 >
                   <Icon className="h-4 w-4" strokeWidth={2} />
                 </Link>
@@ -122,7 +122,7 @@ export function Footer(): ReactNode {
 
           {/* Navegação */}
           <div className="flex flex-col gap-4">
-            <p className="text-[15px] font-semibold tracking-[0.12em] text-[#f82f19] uppercase">
+            <p className="text-[15px] font-semibold tracking-[0.12em] text-[var(--frame-accent)] uppercase">
               Navegação
             </p>
             <ul className="flex flex-col gap-2.5">
@@ -130,7 +130,7 @@ export function Footer(): ReactNode {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[#f82f19]"
+                    className="text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[var(--frame-accent)]"
                   >
                     {label}
                   </Link>
@@ -141,14 +141,14 @@ export function Footer(): ReactNode {
 
           {/* Contato */}
           <div className="flex flex-col gap-4">
-            <p className="text-[15px] font-semibold tracking-[0.12em] text-[#f82f19] uppercase">
+            <p className="text-[15px] font-semibold tracking-[0.12em] text-[var(--frame-accent)] uppercase">
               Contato
             </p>
             <ul className="flex flex-col gap-3">
               <li>
                 <Link
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[#f82f19]"
+                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[var(--frame-accent)]"
                 >
                   <Mail className="h-4 w-4 shrink-0" strokeWidth={2} />
                   {siteConfig.contact.email}
@@ -159,7 +159,7 @@ export function Footer(): ReactNode {
                   href={`https://wa.me/${siteConfig.contact.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[#f82f19]"
+                  className="inline-flex items-center gap-2.5 text-[14px] font-medium text-[var(--frame-foreground)]/80 transition-colors hover:text-[var(--frame-accent)]"
                 >
                   <WhatsAppIcon className="h-4 w-4 shrink-0" />
                   WhatsApp

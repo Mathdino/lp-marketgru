@@ -4,18 +4,52 @@ import { GrainientBackground } from "@/components/shaders/grainient-background";
 import { FadeIn } from "@/components/ui/motion-primitives";
 import SplitText from "@/components/ui/split-text";
 import { createMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/json-ld";
+import { BLOG_POSTS } from "@/lib/blog-data";
+import {
+  montarGrafo,
+  schemaBreadcrumb,
+  schemaCollection,
+  schemaWebPage,
+} from "@/lib/schema";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = createMetadata({
-  title: "Blog",
+  title: "Blog: minimercado autônomo e condomínio",
   description:
-    "Confira artigos, dicas e novidades sobre minimercados autônomos, conveniência 24h e tecnologia para condomínios.",
+    "Artigos sobre minimercado autônomo, honest market e mercado 24h em condomínio: como funciona, quanto custa e o que o síndico precisa avaliar antes.",
   path: "/blog",
 });
 
 export default function BlogPage(): ReactNode {
+  /* O ItemList lista os posts que ESTA página mostra — os artigos do blog,
+     nunca as páginas de keyword, que vivem na raiz e têm outra função. */
+  const artigos = BLOG_POSTS.filter((p) => !p.isKeyword);
+  const grafo = montarGrafo([
+    schemaWebPage({
+      canonical: "/blog",
+      nome: "Blog MarketGRU",
+      descricao:
+        "Artigos sobre minimercado autônomo, honest market e mercado 24h em condomínio: como funciona, quanto custa e o que o síndico precisa avaliar antes.",
+    }),
+    schemaBreadcrumb([{ nome: "Blog", path: "/blog" }], "/blog"),
+    schemaCollection({
+      canonical: "/blog",
+      nome: "Blog MarketGRU",
+      descricao:
+        "Artigos sobre minimercado autônomo e mercado 24h em condomínio.",
+      itens: artigos.map((p) => ({
+        nome: p.title,
+        path: `/blog/${p.slug}`,
+        descricao: p.excerpt,
+      })),
+    }),
+  ]);
+
   return (
+    <>
+      <JsonLd data={grafo} />
     <main id="main-content" className="relative flex flex-1 flex-col">
       <GrainientBackground className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-225 overflow-hidden" />
       <section className="mx-auto w-full max-w-275 px-6 pt-44 pb-16 sm:px-10 sm:pb-20">
@@ -45,5 +79,6 @@ export default function BlogPage(): ReactNode {
       <ContactCard />
       <div className="h-12 sm:h-16" />
     </main>
+    </>
   );
 }

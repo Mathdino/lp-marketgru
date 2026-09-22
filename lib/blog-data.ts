@@ -465,7 +465,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: "7",
-    slug: "mercado-autonomo-rendimento-começar",
+    slug: "mercado-autonomo-rendimento-comecar",
     icon: Zap,
     category: "Investidores",
     title:
@@ -543,7 +543,7 @@ export const BLOG_POSTS: BlogPost[] = [
 `,
     date: "12 Mai, 2026",
     imageRatio: 1024 / 768,
-    image: "/blog/mercado-autonomo-rendimento-começar.webp",
+    image: "/blog/mercado-autonomo-rendimento-comecar.webp",
     imageAlt: "Gráficos de rendimento",
   },
   {

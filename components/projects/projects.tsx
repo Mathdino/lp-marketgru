@@ -28,8 +28,7 @@ const UNIDADES: Unidade[] = [
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/unidades/palacio-das-artes/img-5.webp",
-    imageAlt:
-      "Minimercado autônomo MarketGRU no Residencial Palácio das artes",
+    imageAlt: "Minimercado autônomo MarketGRU no Residencial Palácio das artes",
   },
   {
     id: "the-brick",
@@ -109,7 +108,7 @@ const UNIDADES: Unidade[] = [
 export function Projects(): ReactNode {
   return (
     <section className="relative w-full [font-family:var(--font-poppins)]">
-      <div className="mx-auto w-full px-6 pt-30 sm:px-24 sm:pt-50">
+      <div className="mx-auto w-full px-6 pt-40 sm:px-24">
         <FadeIn className="flex flex-col items-center gap-5 pb-10 text-center sm:pb-14">
           <h2 className="text-foreground font-serif text-[2rem] leading-[1.05] font-medium tracking-tight md:text-[2.5rem] lg:text-[3rem]">
             <SplitText
