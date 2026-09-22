@@ -7,6 +7,9 @@ import { siteConfig } from "@/lib/config";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Minimercado", href: "/minimercado" },
+  { label: "Atuação", href: "/atuacao" },
+  { label: "Condomínio", href: "/mercado-para-condominio" },
+  { label: "Empresas", href: "/mercado-para-empresas" },
   { label: "Sobre Nós", href: "/sobre-nos" },
   { label: "Blog", href: "/blog" },
   { label: "Contato", href: "/contato" },
@@ -175,7 +178,15 @@ export function Footer(): ReactNode {
             © {year} Market Gru. Todos os direitos reservados.
           </p>
           <p className="text-[12px] text-[var(--frame-foreground)]/40">
-            Desenvolvido por MathDino
+            Desenvolvido por{" "}
+            <Link
+              href="https://mathdinodev.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--frame-accent)] transition-colors duration-300 hover:text-[var(--frame-foreground)]"
+            >
+              MathDino
+            </Link>
           </p>
         </div>
       </div>
