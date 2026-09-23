@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Instagram, Facebook, Youtube, Mail } from "lucide-react";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/lib/config";
+import { CookiePreferencesButton } from "@/components/layout/cookie-consent";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -177,6 +178,15 @@ export function Footer(): ReactNode {
           <p className="text-[13px] text-[var(--frame-foreground)]/55">
             © {year} Market Gru. Todos os direitos reservados.
           </p>
+          <div className="flex items-center gap-4 text-[12px]">
+            <Link
+              href="/politica-de-privacidade"
+              className="text-[var(--frame-foreground)]/55 transition-colors hover:text-[var(--frame-accent)]"
+            >
+              Política de privacidade
+            </Link>
+            <CookiePreferencesButton className="cursor-pointer text-[var(--frame-foreground)]/55 transition-colors hover:text-[var(--frame-accent)]" />
+          </div>
           <p className="text-[12px] text-[var(--frame-foreground)]/40">
             Desenvolvido por{" "}
             <Link

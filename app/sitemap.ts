@@ -36,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sobre-nos",
     "/blog",
     "/contato",
+    "/politica-de-privacidade",
   ];
 
   const areas = ATUACAO_AREAS.map((a) => `/${a.slug}`);

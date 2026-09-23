@@ -1,9 +1,11 @@
 import { WhatsAppFloat } from "@/components/contact/whatsapp-float";
+import { CookieConsent } from "@/components/layout/cookie-consent";
 import { Footer } from "@/components/layout/footer";
 import { Nav } from "@/components/layout/nav";
 import { PageBackdrop } from "@/components/layout/page-backdrop";
 import { Providers } from "@/components/layout/providers";
 import { SkipToContent } from "@/components/layout/skip-to-content";
+import { consentBootstrapScript } from "@/lib/consent";
 import { baseMetadata } from "@/lib/metadata";
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
@@ -139,18 +141,21 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${coolvetica.variable} ${gohan.variable} ${poppins.variable}`}
     >
       <head>
+        {/* Consent Mode v2: o padrão "negado" precisa entrar na fila do
+            dataLayer ANTES do config e antes do gtag.js. Por isso é um
+            <script> síncrono no HTML do servidor, e não um next/script
+            afterInteractive — esse roda depois da hidratação, tarde demais.
+            Sem isso o GA4 mostra os indicadores de consentimento "inativos". */}
+        <script
+          id="consent-default"
+          dangerouslySetInnerHTML={{
+            __html: consentBootstrapScript(GA_MEASUREMENT_ID),
+          }}
+        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
       </head>
       <body className="bg-background text-foreground min-h-screen [font-family:var(--font-poppins)] antialiased">
         <Providers>
@@ -180,6 +185,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <WhatsAppFloat />
+          <CookieConsent />
         </Providers>
       </body>
     </html>
