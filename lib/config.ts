@@ -10,9 +10,9 @@ export const siteConfig = {
   ogImage: "/og-image.png",
 
   contact: {
-    whatsapp: "5511951085239", // Sem + e sem espaços
+    whatsapp: "5511945407160", // Sem + e sem espaços
     email: "contato@marketgru.com.br",
-    phone: "+55 (11) 95108-5239",
+    phone: "+55 (11) 94540-7160",
   },
 
   social: {
