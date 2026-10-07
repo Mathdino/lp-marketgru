@@ -29,7 +29,7 @@ import {
 const CANONICAL = "/minimercado";
 
 const META_DESCRIPTION =
-  "Minimercado autônomo instalado sem custo em condomínios e empresas: loja 24h, sem operador de caixa, com pagamento por app, Pix ou cartão. Veja as unidades.";
+  "Minimercado autônomo instalado sem custo em condomínios e empresas: loja 24h, sem operador de caixa, com pagamento por app, Pix ou cartão. Mais de 100 unidades.";
 
 const RESUMO =
   "Minimercado autônomo é uma loja sem operador de caixa, aberta 24 horas, instalada dentro do condomínio ou da empresa. O cliente escolhe o produto na prateleira e paga ali mesmo, por app, Pix ou cartão — sem fila e sem horário de fechamento.";
@@ -113,8 +113,8 @@ export default function MinimercadoPage(): ReactNode {
             <GsapReveal className="mt-6">
               <p className="text-foreground/70 [font-family:var(--font-poppins)] text-[17px] leading-relaxed">
                 A implantação é sem custo para quem recebe a loja: equipamento,
-                estoque, reposição e manutenção são nossos. Abaixo estão
-                unidades já em operação — e, se quiser o recorte do seu caso,
+                estoque, reposição e manutenção são nossos. Já são mais de 100
+                unidades em operação — abaixo, alguns exemplos. Se quiser o recorte do seu caso,
                 veja as páginas de{" "}
                 <Link
                   href="/mercado-para-condominio"

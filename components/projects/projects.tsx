@@ -19,89 +19,88 @@ type Unidade = {
 
 const UNIDADES: Unidade[] = [
   {
-    id: "palacio-das-artes",
+    id: "residencial-1",
     icon: Building2,
-    iconLabel: "Residencial Palácio das artes",
+    iconLabel: "Condomínio residencial",
     title: "Comodidade que combina com a rotina de quem mora aqui.",
     description:
       "Os moradores têm o minimercado autônomo à disposição a qualquer hora, com praticidade, variedade e pagamento rápido pelo celular.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
-    image: "/unidades/palacio-das-artes/img-5.webp",
-    imageAlt: "Minimercado autônomo MarketGRU no Residencial Palácio das artes",
+    image: "/unidades/residencial/img-5.webp",
+    imageAlt: "Minimercado autônomo MarketGRU em condomínio residencial",
   },
   {
-    id: "the-brick",
+    id: "residencial-2",
     icon: Building2,
-    iconLabel: "Condomínio The Brick",
+    iconLabel: "Condomínio residencial",
     title: "Sempre abastecido, organizado e disponível 24 horas.",
     description:
       "Os moradores não precisam mais sair tarde da noite pra comprar o básico. É prático, organizado e sempre abastecido.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/minimercado-1.webp",
-    imageAlt: "Minimercado autônomo MarketGRU no Condomínio The Brick",
+    imageAlt: "Minimercado autônomo MarketGRU aberto 24 horas em condomínio",
   },
   {
-    id: "first-apto",
+    id: "residencial-3",
     icon: Building2,
-    iconLabel: "First Apto",
+    iconLabel: "Edifício residencial",
     title: "Instalação limpa, sem dor de cabeça e que valoriza o prédio.",
     description:
       "A instalação foi tudo limpo e sem dor de cabeça. Agregou valor ao prédio e os condôminos adoraram a comodidade.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/ambiente-moderno.webp",
-    imageAlt: "Minimercado autônomo MarketGRU no First Apto",
+    imageAlt: "Minimercado autônomo MarketGRU em edifício residencial",
   },
   {
-    id: "clavi-ecco-tower",
+    id: "corporativo",
     icon: Building2,
-    iconLabel: "Clavi Ecco Tower",
+    iconLabel: "Edifício corporativo",
     title: "Café, água e snack ali do lado, sem perder tempo.",
     description:
       "Virou o melhor amigo na hora do almoço. Café, água, snack saudável, tudo ali do lado, sem perder tempo no trânsito.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/compra-facil.webp",
-    imageAlt: "Minimercado autônomo MarketGRU na Clavi Ecco Tower",
+    imageAlt: "Minimercado autônomo MarketGRU em edifício corporativo",
   },
   {
-    id: "terrazzo",
+    id: "condominio-clube",
     icon: Building2,
-    iconLabel: "Terrazzo Condomínio Clube",
+    iconLabel: "Condomínio clube",
     title: "Zero custo, reposição em dia e atendimento atencioso.",
     description:
       "A melhor decisão da assembleia. Zero custo pro condomínio, reposição em dia e atendimento atencioso sempre que precisamos.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/mais-protecao.webp",
-    imageAlt: "Minimercado autônomo MarketGRU no Terrazzo Condomínio Clube",
+    imageAlt: "Minimercado autônomo MarketGRU em condomínio clube",
   },
   {
-    id: "escola-nelsom",
+    id: "escola",
     icon: Building2,
-    iconLabel: "Escola Técnica de Música Nelsom",
+    iconLabel: "Instituição de ensino",
     title: "Preços justos e pagamento pelo celular super rápido.",
     description:
       "Acabou o item às 23h? Resolve na hora. Os preços são justos e o pagamento pelo celular é super rápido.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/faq.webp",
-    imageAlt:
-      "Minimercado autônomo MarketGRU na Escola Técnica de Música Nelsom",
+    imageAlt: "Minimercado autônomo MarketGRU em instituição de ensino",
   },
   {
-    id: "alianca",
+    id: "empresa",
     icon: Building2,
-    iconLabel: "Imobiliária Aliança Imóveis",
+    iconLabel: "Empresa",
     title: "Variedade que surpreende e comodidade que não tem preço.",
     description:
       "A variedade de produtos surpreende pro tamanho, e a praticidade de comprar sem sair do prédio não tem preço.",
     meta: "Unidade MarketGRU",
     imageRatio: 4 / 3,
     image: "/blog/investir-em-mercado-autonomo.webp",
-    imageAlt: "Minimercado autônomo MarketGRU na Imobiliária Aliança Imóveis",
+    imageAlt: "Minimercado autônomo MarketGRU dentro de empresa",
   },
 ];
 
@@ -127,8 +126,8 @@ export function Projects(): ReactNode {
             />
           </h2>
           <p className="text-foreground/65 max-w-[46ch] text-[18px] leading-[1.45] tracking-tight sm:text-[20px]">
-            Condomínios, empresas e instituições que já contam com um
-            minimercado autônomo MarketGRU no dia a dia.
+            Mais de 100 condomínios, empresas e instituições já contam com
+            um minimercado autônomo MarketGRU no dia a dia.
           </p>
         </FadeIn>
 

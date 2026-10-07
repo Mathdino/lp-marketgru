@@ -7,11 +7,11 @@ import SplitText from "@/components/ui/split-text";
 
 /* Stats — ajuste valores conforme a empresa (4 itens em grid 2×2) */
 const STATS = [
-  { value: 7, suffix: "+", label: "Minimercados instalados em SP" },
+  { value: 100, suffix: "+", label: "Minimercados instalados em SP" },
   {
-    value: 12,
+    value: 20,
     suffix: "K+",
-    label: "Moradores e colaboradores atendidos diariamente",
+    label: "Moradores e colaboradores com uma loja MarketGRU por perto",
   },
   {
     value: 99,
