@@ -130,7 +130,7 @@ export function WhatsAppFloat(): ReactNode {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Fechar formulário do WhatsApp" : "Abrir WhatsApp"}
         aria-expanded={open}
-        className="group fixed right-5 bottom-5 z-[60] inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 active:scale-95 sm:right-7 sm:bottom-7 sm:h-16 sm:w-16"
+        className="group fixed right-5 bottom-5 z-[130] inline-flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(37,211,102,0.45)] transition-transform duration-200 hover:scale-105 active:scale-95 sm:right-7 sm:bottom-7 sm:h-16 sm:w-16"
       >
         {/* Ondas pulsando */}
         <span
@@ -176,7 +176,7 @@ export function WhatsAppFloat(): ReactNode {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.18 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-[55] bg-black/40 backdrop-blur-sm sm:hidden"
+              className="fixed inset-0 z-[125] bg-black/40 backdrop-blur-sm sm:hidden"
             />
 
             <motion.div
@@ -188,7 +188,7 @@ export function WhatsAppFloat(): ReactNode {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.96 }}
               transition={{ type: "spring", stiffness: 380, damping: 32 }}
-              className="border-foreground/8 bg-background fixed inset-x-4 bottom-24 z-[56] flex max-h-[calc(100dvh-7rem)] flex-col overflow-hidden rounded-2xl border shadow-2xl sm:inset-auto sm:right-7 sm:bottom-28 sm:max-h-[min(640px,calc(100dvh-9rem))] sm:w-[380px]"
+              className="border-foreground/8 bg-background fixed inset-x-4 bottom-24 z-[126] flex max-h-[calc(100dvh-7rem)] flex-col overflow-hidden rounded-2xl border shadow-2xl sm:inset-auto sm:right-7 sm:bottom-28 sm:max-h-[min(640px,calc(100dvh-9rem))] sm:w-[380px]"
             >
               {/* Cabeçalho verde */}
               <div className="flex items-center gap-3 bg-[#f4331b] px-5 py-4 [font-family:var(--font-poppins)] text-white">
