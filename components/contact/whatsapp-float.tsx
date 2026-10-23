@@ -26,20 +26,29 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-/* ─── Input / Select classes (alinhadas ao design do site) ─── */
+/* ─── Input classes (alinhadas ao design do site) ─── */
 const inputCls =
   "w-full rounded-xl border border-foreground/10 bg-foreground/4 px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/35 outline-none focus:border-foreground/25 focus:ring-2 focus:ring-foreground/10 transition-colors";
 
-const selectCls =
-  "w-full rounded-xl border border-foreground/10 bg-foreground/4 px-3 py-2.5 text-sm text-foreground outline-none focus:border-foreground/25 focus:ring-2 focus:ring-foreground/10 transition-colors cursor-pointer dark:bg-zinc-900 dark:[color-scheme:dark]";
+/* Pill de opção (radio escondido + label estilizado) */
+const pillCls =
+  "flex-1 cursor-pointer rounded-xl border border-foreground/10 bg-foreground/4 px-3 py-2.5 text-center text-sm text-foreground/70 transition-colors hover:border-foreground/25 has-[:checked]:border-[#f4331b] has-[:checked]:bg-[#f4331b]/10 has-[:checked]:font-semibold has-[:checked]:text-foreground has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-foreground/10";
 
-type Perfil = "" | "Condomínio" | "Construtora" | "Investidor";
+const legendCls = "mb-1.5 text-[13px] font-medium text-foreground/70";
+
+const TIPOS = ["Condomínio", "Empresa"] as const;
+const APARTAMENTOS = ["+100", "+200", "+300"] as const;
+
+type Tipo = "" | (typeof TIPOS)[number];
+type Apartamentos = "" | (typeof APARTAMENTOS)[number];
 
 type FormState = {
   nome: string;
   email: string;
   telefone: string;
-  perfil: Perfil;
+  tipo: Tipo;
+  apartamentos: Apartamentos;
+  regiao: string;
   mensagem: string;
 };
 
@@ -47,7 +56,9 @@ const EMPTY: FormState = {
   nome: "",
   email: "",
   telefone: "",
-  perfil: "",
+  tipo: "",
+  apartamentos: "",
+  regiao: "",
   mensagem: "",
 };
 
@@ -82,18 +93,26 @@ export function WhatsAppFloat(): ReactNode {
   ) {
     const { name, value } = e.target;
     const next = name === "telefone" ? maskPhone(value) : value;
-    setForm((prev) => ({ ...prev, [name]: next }));
+    setForm((prev) => ({
+      ...prev,
+      [name]: next,
+      /* Empresa não tem apartamentos: limpa ao trocar o tipo */
+      ...(name === "tipo" && next !== "Condomínio" ? { apartamentos: "" } : {}),
+    }));
   }
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
+    const isCondominio = form.tipo === "Condomínio";
     const mensagem =
       `Olá! Vim pelo site do MarketGRU.\n\n` +
       `*Nome:* ${form.nome}\n` +
       `*E-mail:* ${form.email}\n` +
       `*Telefone:* ${form.telefone}\n` +
-      `*Perfil:* ${form.perfil}\n\n` +
+      `*Tipo:* ${form.tipo}\n` +
+      (isCondominio ? `*Apartamentos:* ${form.apartamentos}\n` : "") +
+      `*Região:* ${form.regiao.trim()}\n\n` +
       `*Mensagem:*\n${form.mensagem}`;
 
     const waUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(mensagem)}`;
@@ -197,7 +216,7 @@ export function WhatsAppFloat(): ReactNode {
               {/* Form */}
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-1 flex-col gap-3 overflow-y-auto p-5 [font-family:var(--font-poppins)]"
+                className="flex flex-1 flex-col gap-3 overflow-y-auto p-5 [font-family:var(--font-poppins)] [&>*]:shrink-0"
               >
                 <input
                   name="nome"
@@ -233,18 +252,66 @@ export function WhatsAppFloat(): ReactNode {
                   className={inputCls}
                 />
 
-                <select
-                  name="perfil"
-                  value={form.perfil}
-                  onChange={handleChange}
-                  required
-                  className={selectCls}
-                >
-                  <option value="">Selecione um perfil</option>
-                  <option value="Condomínio">Condomínio</option>
-                  <option value="Construtora">Construtora</option>
-                  <option value="Investidor">Investidor</option>
-                </select>
+                <fieldset>
+                  <legend className={legendCls}>
+                    O mercado é para um condomínio ou empresa?
+                  </legend>
+                  <div className="flex gap-2">
+                    {TIPOS.map((tipo) => (
+                      <label key={tipo} className={pillCls}>
+                        <input
+                          type="radio"
+                          name="tipo"
+                          value={tipo}
+                          checked={form.tipo === tipo}
+                          onChange={handleChange}
+                          required
+                          className="sr-only"
+                        />
+                        {tipo}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+
+                {form.tipo === "Condomínio" && (
+                  <fieldset>
+                    <legend className={legendCls}>
+                      Quantos apartamentos tem?
+                    </legend>
+                    <div className="flex gap-2">
+                      {APARTAMENTOS.map((qtd) => (
+                        <label key={qtd} className={pillCls}>
+                          <input
+                            type="radio"
+                            name="apartamentos"
+                            value={qtd}
+                            checked={form.apartamentos === qtd}
+                            onChange={handleChange}
+                            required
+                            className="sr-only"
+                          />
+                          {qtd}
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+                )}
+
+                {form.tipo !== "" && (
+                  <label className="flex flex-col">
+                    <span className={legendCls}>Qual região?</span>
+                    <input
+                      name="regiao"
+                      value={form.regiao}
+                      onChange={handleChange}
+                      placeholder="Ex.: Guarulhos, Zona Leste de SP"
+                      required
+                      autoComplete="address-level2"
+                      className={inputCls}
+                    />
+                  </label>
+                )}
 
                 <textarea
                   name="mensagem"
